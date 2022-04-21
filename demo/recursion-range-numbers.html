@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  // Solution One:
+/*   function rangeOfNumbers(startNum, endNum) {
+    if (endNum - startNum === 0) {
+      return [startNum]
+    } else {
+      let newArr = rangeOfNumbers(startNum, endNum - 1)
+      newArr.push(endNum)
+      return newArr
+    }
+  } */
+  
+  console.log(rangeOfNumbers(1, 5)) // [1, 2, 3, 4, 5]
+  console.log(rangeOfNumbers(4, 4)) // [4]
+
+  // Solution Two:
+/*   function rangeOfNumbers(startNum, endNum) {
+    return startNum === endNum
+      ? [startNum]
+      : rangeOfNumbers(startNum, endNum - 1).concat(endNum)
+  } */
+
+  // Solution Three:
+  function rangeOfNumbers(startNum, endNum) {
+    return startNum === endNum
+      ? [startNum]
+      : [...rangeOfNumbers(startNum, endNum - 1), endNum]
+  }
+  </script>
+</body>
+</html>

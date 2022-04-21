@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 生成 2 到 10 之间的随机整数 （包含 2 和 10）
+
+    const max = 10
+    const min = 2
+
+    // 差值为 8
+    const diff = max - min
+
+    // 生成 0 到 n 之间的随机整数（包含0，不包含 n）：需要 Math.floor(随机小数 * (n+1))
+    const val1 = Math.random() * ( diff + 1 )
+
+    // val2 最小可以是 0，最大可以是 8，因为 （10 - 2） === 8
+    const val2 = Math.floor(val1)
+
+    const result = val2 + min
+
+    // 即  Math.floor(Math.random() * (max - min + 1)) + min
+  </script>
+</body>
+</html>

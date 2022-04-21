@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script>
+    function change(){
+      document.getElementById("upload_file_tmp").value=document.getElementById("upload_file").value;
+    }  
+  </script> 
+  
+  <label for="upload_file" class="col-sm-2 control-label">上传文件</label>
+  <div class="col-sm-4">
+    <input type="file" class="form-control" id="upload_file" name="upload_file"
+      style="display: none;" οnchange="change();">
+    <input type="text" class="form-control" id="upload_file_tmp" name="upload_file_tmp"
+      readonly="readonly" οnclick="upload_file.click(); ">
+  </div>
+  <div class="col-sm-2">
+      <button type="button" class="btn btn-primary" id="select_file"
+        οnclick="upload_file.click();">浏览
+      </button>
+  </div> 
+</body>
+</html>

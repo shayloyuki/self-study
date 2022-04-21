@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>递归</title>
+</head>
+<body>
+  <script>
+  // function multiply(arr, n) {
+  //   let product = 1;
+  //   for (let i = 0; i < n; i++) {
+  //     product *= arr[i];
+  //   }
+  //   return product;
+  // } 
+  
+  const arr1 = [2, 3, 4]
+
+
+  console.log(multiply(arr1, 2)) // 6
+  console.log(multiply(arr1, 1) * arr1[1]) // 6
+
+  // 递归
+  function multiply(arr, n) {
+    // base case 非常重要，否则会无限循环
+    if (n <= 0) {
+      return 1
+    } else {
+      return multiply(arr, n-1) * arr[n-1]
+    }
+  }
+  </script>
+</body>
+</html>
