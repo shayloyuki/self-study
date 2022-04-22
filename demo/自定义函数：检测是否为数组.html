@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+/*     // 办法一：自定义函数
+    var fruits = ["Banana", "Orange", "Apple", "Mango"]
+    console.log(fruits)
+    console.log(fruits.constructor) // ƒ Array() { [native code] }
+    console.log(fruits.constructor.toString()) // function Array() { [native code] }
+
+    console.log(isArray(fruits)) // true
+    
+    function isArray(myArray) {
+      return myArray.constructor.toString().indexOf("Array") > -1;
+    } */
+
+    // 办法二：instanceof
+    // 示例一
+    function Car(make, model, year) {
+      this.make = make;
+      this.model = model;
+      this.year = year;
+    }
+    const auto = new Car('Honda', 'Accord', 1998);
+
+    console.log(auto);
+
+    console.log(auto instanceof Car);
+    // expected output: true
+
+    console.log(auto instanceof Object);
+    // expected output: true
+
+/*     // 示例二
+    var fruits = ["Banana", "Orange", "Apple", "Mango"];
+    console.log(fruits);
+    console.log(fruits instanceof Array); //true
+    console.log(fruits instanceof Object);//true
+    console.log(fruits instanceof String);//false
+    console.log(fruits instanceof Number);//false */
+  </script>
+</body>
+</html>

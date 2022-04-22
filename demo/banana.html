@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const strange = ('b' + 'a' + + 'a' + 'a')
+    console.log(strange) // baNaNa
+
+    // console.log(++'a') // Uncaught SyntaxError: Invalid left-hand side expression in prefix operation
+    // console.log(++ 'a') // Uncaught SyntaxError: Invalid left-hand side expression in prefix operation
+    console.log(+ 'a') // NaN
+    console.log(+'a') // NaN
+    console.log(+ + 'a') // NaN
+
+    console.log(strange.toLowerCase()) // banana
+    console.log('b'+'a'+ +'a'+'a') //baNaNa
+
+    console.log('b'+'a'++'a'+'a')
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+/*     按下面的要求写代码，一条对应一行代码：
+
+      1、创建一个空的对象 user。
+      2、为这个对象增加一个属性，键是 name，值是 John。
+      3、再增加一个属性，键是 surname，值是 Smith。
+      4、把键为 name 的属性的值改成 Pete。
+      5、删除这个对象中键为 name 的属性 */
+
+    var user = {}
+
+    user['name'] = 'John'
+    // user.name = 'John' // 名字要用字符串表示，否则为变量
+    
+    // // user.surname = 'Smith'
+    user['surname'] = 'Smith' // [] 内的属性名要用 引号 包裹，否则为 not defined
+
+    // // user.name = 'Pete'
+    user['name'] = 'Pete' // // [] 内的属性名要用 引号 包裹，否则会新添加空字符串作为属性名
+
+    // // delete user.name
+    delete user['name']
+
+    console.log(user)
+  </script>
+</body>
+</html>

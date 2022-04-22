@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 原代码
+/*     function checkAge(age) {
+      if (age > 18) {
+        return true;
+      } else {
+        return confirm('Did parents allow you?');
+      }
+    } */
+
+    // 重写：三元表达式
+/*     function checkAge(age) {
+      age > 18 ? true : confirm('Did parents allow you?')
+    } */
+
+    // 另一种写法： ||
+    function checkAge(age) {
+      return (age > 18) || (confirm('Did parents allow you?'))
+    }
+
+    checkAge(17)
+  </script>
+</body>
+</html>

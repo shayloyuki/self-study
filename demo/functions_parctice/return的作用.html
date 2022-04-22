@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!--体会 return 的作用 -->
+  <script>
+    // 方式一：省略 else
+    function checkAge(age) {
+      if (age > 18) {
+        return true; // return 代表停止了，不执行这个 block 内部剩下的代码了
+      }
+      //  这是函数，不是 for 循环内部
+      return confirm('Did parents allow you?');
+    } 
+
+    // 方式二：不省略 else
+/*     function checkAge(age) {
+      if (age > 18) {
+        return true;
+      } else {
+        // ...
+        return confirm('Did parents allow you?');
+      }
+    } */
+    checkAge(17)
+  </script>
+</body>
+</html>

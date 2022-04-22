@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  // 第一种：function 关键字定义
+    // function foo (name) {
+    //   console.log(name)
+    // }
+
+  
+  // 第二种：匿名函数定义
+  
+  // 方式一：赋值给变量
+  // var foo = function (x) {
+  //   console.log(x)
+  // }
+  // foo(2) // 2,因为调用 foo 执行了打印
+
+  var fun = function(name) {
+    return function () {
+      console.log(name)
+    }
+  }
+  // fun('Lily') // just silence
+
+  // 因为返回的是函数，相当于 
+    // function ('Lily') {
+    //   console.log('Lily')
+    // } 
+    // 也就是说：返回了一个未注册的匿名函数。
+    // 要想执行，有两种方式：
+    // 第一种：注册、调用
+      var helloLily = fun('Lily')
+      helloLily() //'Lily'
+    // 第二种：匿名函数自调用
+      fun('Lily')() //'Lily'
+  
+/*总结：
+  closure 关闭（的作用域），指的是函数内部对于外部作用域是关闭的。
+  因此，调用fun函数不会执行 closure 内的代码。
+  克服 closure 的办法： */
+    // 第一种：注册、调用
+
+        // 错误写法：
+        // var danke = fun()
+        // danke('Alice') //undefined
+
+        // 正确写法：
+        var danke = fun('Alice')
+        danke() // 'Alice'
+
+    //第二种：匿名函数自调用
+      fun('Tom')() // 'Tom' 
+ 
+
+
+
+
+
+  // 方式二：自调用函数创建
+  // (function (x) {
+  //     return x * 2
+  // })(5);
+  </script>
+</body>
+</html>

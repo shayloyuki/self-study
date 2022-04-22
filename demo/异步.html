@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    for (var i = 0; i < 5; i++) {
+      setTimeout(function () {
+        console.log(new Date, i)
+      }, 1000)
+    }
+    console.log(new Date, i)
+  </script>
+<!--   settimeout是异步执行，1s后往任务队列里面添加一个任务，只有主线上的全部执行完，才会执行任务队列里的任务，当主线执行完成后，i是5，所以此时再去执行任务队列里的任务时，i全部是5了。对于打印5次是：
+  每一次for循环的时候，settimeout都执行一次，但是里面的函数没有被执行，而是被放到了任务队列里面，等待执行，for循环了5次，就放了5次，当主线程执行完成后，才进入任务队列里面执行。 -->
+</body>
+</html>

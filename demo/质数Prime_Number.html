@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 质数：只能被 1 和 自身 整除，且大于 1 的自然数 -->
+  <!-- 即：能够被任何一个 大于1 且 小于自身 的整数除尽，则这个数不是质数-->
+  <script>
+    // 方式一：分割为两个函数（推荐）
+    function showPrimes(n) { // 小于 n 的质数有哪些
+      for (let i = 2; i < n; i++) {
+        if (!isPrime(i)) continue;
+
+        alert(i);  // a prime
+      }
+    }
+
+    function isPrime(n) { // 判断 n 是否为质数 
+      for (let i = 2; i < n; i++) {
+        if ( n % i == 0) return false;
+      }
+      return true;
+    }
+
+    // 方式二：一个函数
+    function showPrimes(n) {
+      nextPrime: for (let i = 2; i < n; i++) {
+
+        for (let j = 2; j < i; j++) {
+          if (i % j == 0) continue nextPrime;
+        }
+
+        alert( i ); // a prime
+      }
+    }
+  </script>
+</body>
+</html>

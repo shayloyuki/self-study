@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 写一段代码求出我们的工资总和，将计算结果保存到变量 sum。 -->
+  <script>
+    let salaries = {
+      John: 100,
+      Ann: 160,
+      Pete: 130
+    }
+
+    let sum = 0
+    for (let name in salaries) {
+      // 有属性
+      // sum += salaries.name // NaN
+      sum += salaries[name] // [key] 可计算
+    }
+    // 没有属性,不操作
+    console.log(sum); // 390
+  </script>
+</body>
+</html>

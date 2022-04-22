@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*     区分 ++a 和 a++
+    ++a : 现在就 a + 1  
+    a++ : 下一次使用时 + 1  */
+
+    var a = 1
+    var b = a++ // 后置自增 Profix：先参与，后自加，即输出旧值
+    console.log(a) // 2
+    console.log(b) // 1
+
+    var c = 1
+    var d = ++c // 前置自增 Prefix：先自加，后参与，即输出新值
+    console.log(c) // 2
+    console.log(d) // 2
+  </script>
+</body>
+</html>

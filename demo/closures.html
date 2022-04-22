@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>  
+    /* // Example One
+    function fun() {
+      var a = 4; // 'a' is the local variable, created by the fun()  
+      function innerfun() { // the innerfun() is the inner function, or a closure    
+        return a;
+      }  
+      return innerfun;  
+    }
+    var output = fun();  
+    document.write(output());  // 4
+    document.write(" ");  
+    document.write(output());  //4 */
+
+    /* // Example Two
+    function fun(a) {  
+      function innerfun(b) {  
+        return a - b;  
+      }  
+      return innerfun;  
+    }  
+    var output = fun(4); // a是4
+    // document.write(output()); //NaN
+    document.write(output(4));  // 0
+    document.write(" ");  
+    document.write(output(5));  // b是5 // -1 */
+
+    // Example Three
+    function fun() {  
+      function closure(val) {  
+        return function() {  
+          return val;  
+        }  
+      }  
+      var a = [];  
+      var i;   
+      for (i = 0; i < 5; i++) {  
+        a[i] = closure(i);   
+      }  
+      return a;  
+    }
+    var output = fun();  
+    document.write(output[0]()); // 0 
+    document.write(" ");  
+    document.write(output[1]());  // 1
+    document.write(" ");  
+    document.write(output[2]());  // 2
+    document.write(" ");  
+    document.write(output[3]());  //3
+    document.write(" ");  
+    document.write(output[4]());  //4
+  </script>
+</body>
+</html>
