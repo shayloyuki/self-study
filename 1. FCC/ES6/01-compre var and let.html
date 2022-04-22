@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 1. var: regular situation
+    var numArray = [];
+    for (var i = 0; i < 3; i++) {
+      numArray.push(i);
+    }
+    console.log(numArray); // [0, 1, 2]
+    console.log(i);// 3
+
+
+    // 2. var: will cause problems if you were to create a function and store it for later use inside a for loop that uses the i variable
+    var printNumTwo;
+    var i;
+    for (i = 0; i < 3; i++) {
+    // for (var i = 0; i < 3; i++) {
+      if (i === 2) {
+        printNumTwo = function() {
+          return i;
+        };
+      }
+    }
+    console.log(printNumTwo()); // 3 ,not 2, because var i is the glocal value 3
+    console.log(i) // 3
+
+    // let: should use let to replace var in this situation
+    let printNumTwo;
+    for (let i = 0; i < 3; i++) {
+      if (i === 2) {
+        printNumTwo = function() {
+          return i;
+        };
+      }
+    }
+    console.log(printNumTwo()); // 2, because let i is not the global value
+    console.log(i); // i is not defined, because i is declared with let in the block, the scope is within the block
+  
+    // 3. Attention：the difference between how var and let keywords assign scope to the declared variable.
+    // It's often better to use different variable names to avoid confusion.
+    function checkScope() {
+    let i = 'function scope';
+    if (true) {
+      let i = 'block scope';
+      console.log('Block scope i is: ', i); // Block scope i is:  block scope
+    }
+    console.log('Function scope i is: ', i); // Function scope i is:  function scope
+    return i;
+    }
+  </script>
+</body>
+</html>

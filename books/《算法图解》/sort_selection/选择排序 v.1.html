@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 题目：将数组元素按从小到大的顺序排列 -->
+  <script>
+    // 1、先编写一个用于找出数组中最小元素的函数
+    let findSmallest = function (arr) {
+
+      let smallest = arr[0] // 存储最小的值
+      let smallest_index = 0 // 存储最小元素的索引
+
+      for (let i = 1; i <= arr.length; i++) {
+        if (arr[i] < smallest) {
+          smallest = arr[i]
+          smallest_index = i
+        }
+      }
+
+      return smallest_index
+    }
+
+    // 2、使用这个函数来编写选择排序算法
+    let selectionSort = function (arr) { // 对数组进行排序
+
+      let newArr = []
+
+      for (let i = 0; i <= arr.length - 1; i++) {
+        let smallest = findSmallest(arr) // 找出数组中最小的元素的索引
+        newArr.push(arr.splice(smallest, 1)) // 并将它加入到新数组中
+      }
+
+      return newArr
+    }
+
+    // 3、测试
+    let array = [5, 3, 6, 2, 10]
+    console.log(selectionSort(array))
+  </script>
+</body>
+</html>

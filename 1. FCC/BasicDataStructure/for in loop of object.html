@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+const users = {
+  Alan: { online: false },
+  Jeff: { online: true },
+  Sarah: { online: false }
+}
+
+function countOnline(usersObj) {
+  // Only change code below this line
+  let sum = 0
+  for (let user in usersObj) {
+
+    /* // ERROR 
+    if (user["online"]) { 
+    // When accessing an object's properties, 
+    // the value in parentheses is generally enclosed in quotation marks, 
+    // otherwise this means that the property name is stored in a variable
+      //   sum = sum + 1
+      // }
+
+      console.log(user) // "Alan" and so on
+    
+      console.log(user["online"]) // undefined
+      console.log(user.online) // undefined
+      // Reason: the value of user here is just a string instead of the object
+    } */
+
+    // CORRECT
+    console.log(usersObj.user) // undefined
+    // console.log(usersObj[user].online) // true or false
+    if (usersObj[user].online) {
+    // if (usersObj.user.online) { // 报错
+      sum ++
+    }
+    // Reason: 
+    // usersObj[user] 中括号内没加引号，说明 user 是变量，存储的是对象，比如 Alan: { online: false }
+    // 如果是 usersObj.user 结果是 undefined, 因为 usersObj 中没有 "user" 这个属性名
+    return sum
+    // Only change code above this line
+  }
+}
+
+console.log(countOnline(users)); // 1
+  </script>
+</body>
+</html>

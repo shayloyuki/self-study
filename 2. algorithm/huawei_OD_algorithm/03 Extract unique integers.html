@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  /*  Description
+      Input an integer of type int and return a new integer with no repeating digits in right-to-left reading order.
+      Make sure that the last digit of the input integer is not 0 .
+        
+      Enter description:
+      Enter an integer of type int
+
+      Output description:
+      Returns a new integer with no duplicate digits, in right-to-left reading order
+  */
+
+    // Solution One
+    let line = readline();
+    let arr = line.split('').reverse().map(x => parseInt(x));
+    // Set has deduplication function
+    let list = Array.from(new Set(arr));
+    print(list.join(''))
+
+    // Solution Two
+    let lines
+    while (lines = readline()) {
+    let arr1 = line.split('').reverse() // ['3', '7', '6', '6', '7' ,'8' ,'9']
+    
+    let newArr = []
+    arr1.map((item, index) => {
+        if (index === arr1.indexOf(item)) {
+            newArr.push(item)
+        }
+    })
+    const res = newArr.join('')
+    print(res)
+}
+
+/*    const arr = [3, 7, 6, 6, 7, 8, 9]
+  //  set 有去重功能，可搭配 Array.from() 转为数组
+   const list = new Set(arr) // Set(5) // {0: 3, 1: 7, 2: 6, 3: 8, 4: 9}
+   console.log(Array.from(list)) // [3, 7, 6, 8, 9] */
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let userActivity = {
+      id: 23894201352,
+      date: 'January 1, 2017',
+      data: {
+        totalUsers: 51,
+        online: 42
+      }
+    };
+
+    // Only change code below this line
+    console.log(userActivity.data.online) // 42
+    console.log(userActivity["data"]["online"]) // 42
+
+    userActivity.data.online = 100 // ok
+    userActivity["data"]["online"] = 250 // ok
+    // Only change code above this line
+
+    console.log(userActivity);
+  </script>
+</body>
+</html>

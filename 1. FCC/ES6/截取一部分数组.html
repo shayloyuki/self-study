@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // Ommit the first two array elements and reconstitute the remaining array elements into an array
+    const arr = [1, 2, 3, 4, 5, 7]
+
+    // Solution One: ES6 
+    const [a, b, ...arr1] = arr
+    console.log(arr1) // [3, 4, 5, 7]
+
+    // Solution Two: arr.slice() 
+    // console.log(arr.slice(2)) //[3, 4, 5, 7]
+    // console.log(arr.slice(2, 6)) //[3, 4, 5, 7]
+    
+    // Solution Three: arr.splice() 
+    // copy the array
+    // const newArr = [...arr]
+    // // console.log(newArr) //[1, 2, 3, 4, 5, 7]
+
+    // console.log(newArr.splice(0, 2)) //  [1, 2] 
+    // console.log(newArr) //  [3,4, 5, 7]
+    // console.log(arr) //[1, 2, 3, 4, 5, 7]
+
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // Example One
+    let quit = "qu"
+    let noquit = "qt"
+
+    let quRegex = /q(?=u)/  // positive lookheads
+    let qRegex = /q(?!u)/   // negative lookheads
+
+    quit.match(quRegex) // ["q"]
+    noquit.match(qRegex) // ["q"]
+
+
+    // Example Two
+    let password = "abc123"
+    // between 3 and 6 characters and at least one number
+    let checkPass = /(?=\w{3, 6})(?=\D*\d))/
+    checkPass.test(password) // true
+
+
+    // Example Three
+    let sampleWord = "astronaut"
+    // greater than 5 characters long and have two consecutive digits
+    let pwRegex = /(?=.{6,})(?=\w*\d{2})/
+    let res = pwRegex.test(sampleWord) // true
+  </script>
+</body>
+</html>

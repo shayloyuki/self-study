@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // values should be quoted, otherwise they will be considered as variables.
+    const user = {
+      name: 'Yuki',
+      hobbies: ['running', 'coding', 'boxing']
+    }
+
+    // #1. Access the property of Object
+    // - Dot Notation
+    console.log(user.name) // 'Yuki'
+
+    // - Bracket Notation
+    console.log(user[name]) // undefined , because there's no variable named as name
+    // keys outside of Objects should be quoted unless they are be chained
+    console.log(user['name']) // 'Yuki'
+
+    // #2. Add 
+    // user.age = 58
+    user['age'] = 58
+    console.log(user) // {name: 'Yuki', hobbies: Array(3), age: 58}
+  
+    // #3. Revise
+    // user.age = 60
+    user['age'] = 60
+    console.log(user) // {name: 'Yuki', hobbies: Array(3), age: 60}
+  
+    // user.hobbies[0] = 'clumbing'
+    user['hobbies'][0] = 'clumbing'
+    console.log(user) // {name: 'Yuki', hobbies:  ['clumbing', 'coding', 'boxing'], age: 60}
+  
+    // #4. Delete
+    delete user.hobbies
+    console.log(user) // {name: 'Yuki', age: 60}
+  
+    // #5. Check
+    // - Obj.hasOwnProperty()
+    console.log(user.hasOwnProperty('name')) // true
+    // - variable in obj
+    console.log('hobbies' in user) // false
+
+    // #6. Get an array stored keys of Object: Object.keys(obj)
+    console.log(Object.keys(user)) // ['name', 'age']
+  </script>
+</body>
+</html>

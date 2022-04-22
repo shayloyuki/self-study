@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function Cat(name) {
+      this.name = name
+    }
+    Cat.prototype = {
+      constructor: Cat
+/*       eat: function() {
+        console.log("nom nom nom")
+      } */
+    }
+
+    function Bear(name) {
+      this.name = name
+    }
+    Bear.prototype = {
+      constructor: Bear
+/*       eat: function() {
+        console.log("nom nom nom")
+      } */
+    }
+
+    function Animal() { }
+    Animal.prototype = {
+      constructor: Animal,
+      // #1. Use inheritance so you dont't need to repeat the eat function above
+      eat: function() {
+        console.log("nom nom nom")
+      }
+    }
+    
+/*  #2. make instancs of the supertype Animal.
+    use Object.create(obj) is better, it will create a new object,
+    and sets obj as the new object's prototype.
+    Because new Animal() will be too complex for the scope */
+    Cat.prototype = Object.create(Animal.prototype)
+    Bear.prototype = Object.create(Animal.prototype)
+  
+    let myCat = new Cat('littleCat')
+    let myBear = new Bear('BigBear')
+    // console.log(myCat.constructor) // f Animal() { }
+    // console.log(myBear.constructor) // f Animal() { }
+  
+/*  #3. Cat & Bear inherit its prototype from Animal,
+    but also inherit the constructor of Animal.
+    To avoid this situation, we should reset the inherited consturctor. */
+    Cat.prototype.constructor = Cat
+    Bear.prototype.constructor = Bear
+
+    console.log(myCat.constructor) // f Cat(name) {this.name = name }
+    console.log(myBear.constructor) // f Bear(name) {this.name = name }
+  
+/*  Successful! 
+    the instances myCat & myBear inherit both properties and methods from Cat & Bear and Anmimal */
+    myCat.eat() // 'nom nom nom'
+    console.log(myBear.name) // 'BigBear'
+  </script>
+</body>
+</html>

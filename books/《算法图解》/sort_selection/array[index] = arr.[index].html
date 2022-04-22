@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 目的：把数组中的元素添加到新数组中，如果被添加的元素是数组，
+    那么新数组中会出现数组元素。如何避免这种情况呢？使得新数组中的元素都是简单数据类型 -->
+  <script>
+    var arr = [2, 3, 5]
+    var arrSmallestIndex = 0
+
+    var newArr = []
+    // newArr.push(arr.splice(arrSmallestIndex, 1)) // arr.splice(arrSmallestIndex, 1) 是删掉的数组 [2]
+    
+    // 情况一：数组元素中只有一个元素
+    // Solution 1: array[index] = arr.[index]
+    // newArr.push(arr.splice(arrSmallestIndex, 1)[0]) // 最后 newArr 为 [2]
+
+    // 情况二：数组元素中有多个元素
+
+    // Solution 2: apply()
+    // newArr.push.apply(newArr, arr.splice(arrSmallestIndex, 1)) 
+    // 相当于 newArr.push.apply(newArr, [2])
+
+    // Solution 3: 展开操作符
+    newArr.push(...arr.splice(arrSmallestIndex, 1))
+
+    console.log(newArr) // [2]
+
+    // console.log([5][0]) // 5
+    // https://blog.csdn.net/weixin_45982960/article/details/118577659
+
+
+
+  </script>
+</body>
+</html>

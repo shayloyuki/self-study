@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function freezeObj() {
+      const MATH_CONSTANTS = {
+        PI: 3.14
+      };
+      // Only change code below this line
+      // Object.freeze(MATH_CONSTANTS)
+
+      // Only change code above this line
+      try {
+        MATH_CONSTANTS.PI = 99;
+        if (MATH_CONSTANTS.PI === 3.14) throw "Object is freezed"
+        if (MATH_CONSTANTS.PI !== 3.14) throw "Object is not freezed"
+      } catch(err) {
+        console.log(err);
+      }
+      return MATH_CONSTANTS.PI;
+    }
+    const PI = freezeObj();  // "Object is not freezed"
+    console.log(PI)  // 99
+  </script>
+</body>
+</html>

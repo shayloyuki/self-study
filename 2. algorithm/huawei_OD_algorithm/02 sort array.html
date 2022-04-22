@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // JavaScript V8 ACM mode
+
+    /* Description:
+       Input n integers, find the smallest k integers and output them in ascending order
+
+       Enter description:
+       Enter two integers n and k on the first line
+       The second line inputs an array of integers
+
+       Output description:
+       Output the smallest k integers from small to large, separated by spaces 
+    */
+
+    let line
+    while (line = readline()) {
+        // get input
+        let input1 = line.split(' ')
+        let n = parseInt(input1[0])
+        let k = parseInt(input1[1])
+        
+        let input2 = readline().split(' ')
+        let arr = input2.map(Number)
+
+        // sort
+        let newArr = arr.sort((a, b) => {
+            return a - b 
+        })
+        
+        let result = newArr.slice(0, k).join(' ')
+        // output
+        print(result)
+    }
+  </script>
+</body>
+</html>
+

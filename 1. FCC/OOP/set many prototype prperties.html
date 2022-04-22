@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function Dog(name) {
+      this.name = name
+    }
+/*  the side effect of manually seeting the prototype to a new object: 
+    it erases the constructor property! */
+    Dog.prototype = { 
+      //  remember to set the constructor property when changing the prototype
+      constructor: Dog, 
+      numLegs: 4,
+      eat() {
+        console.log('meat')
+      },
+      describe: function() {
+        console.log('My name is' + this.name)
+      }
+    }
+
+    let myDog = new Dog('WangCai')
+    console.log(myDog.constructor === Dog) // true // become false without line 18
+    console.log(myDog.constructor === Object) // false // become true without line 18
+    console.log(myDog instanceof Dog) // always shown true
+  </script>
+</body>
+</html>

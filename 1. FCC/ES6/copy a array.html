@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // Situation One: arr1 的元素都是简单类型数据
+
+    // Solution 1：spread operator
+    // const arr1 = ['JAN', 'FEB', 'MAR', 'APR', 'MAY'];
+    // let arr2;
+    
+    // arr2 = [...arr1];  // Change this line
+    
+    // console.log(arr2); // ['JAN', 'FEB', 'MAR', 'APR', 'MAY']
+
+    // Solution 2: array.push()
+    // const arr1 = ['JAN', 'FEB', 'MAR', 'APR', 'MAY'];
+    // let arr2 = []
+
+    // arr2.push(arr1)
+    // console.log(arr2); // ['JAN', 'FEB', 'MAR', 'APR', 'MAY']
+
+
+    // Situation Two：
+    // Add one array into another array
+    const arr1 = [0, 1, 2]
+    const arr2 = ['a', 'b']
+
+    // Solution 1: spread operator
+    arr2.push(...arr1)
+
+    // Solution 2: apply()
+    // arr2.push.apply(arr2, arr1);
+
+    console.info(arr2); // [0, 1, 2, 'a', 'b']
+
+  </script>
+ 
+</body>
+</html>

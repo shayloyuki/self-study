@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>H5 Test</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  ul,ol,li {
+    list-style: none;
+  }
+
+  header {
+    background-color: lightgoldenrodyellow;
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  nav {
+    height: 30px;
+    margin: 5px 0;
+  }
+  nav ul {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  nav ul li {
+    display: block;
+    width: 300px;
+    height: 100%;
+    /* 单行文本在父盒子中垂直居中 */
+    line-height: 30px;
+    background-color: lightpink;
+    margin: 5px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 600;
+  }
+  /* 伪类选择器写在标签后面 */
+  nav ul li:hover {
+    cursor: pointer;
+    background-color: rgb(231, 65, 93);;
+  }
+
+  main {
+    width: 100%;
+    height: 450px;
+    margin-top: 15px;
+    display: flex;
+  }
+  aside {
+    height: 100%;
+    width: 30%;
+    padding: 5px;
+    margin-right: 10px;
+    background-color: cyan;
+  }
+  aside .code xmp {
+    font-size: 16px;
+  }
+  article {
+    padding: 5px;
+    flex: 1;
+    height: 100%;
+    background-color: lightblue;
+  }
+  article h4 {
+    margin-bottom: 15px;
+  }
+  article .effect {
+    padding: 10px;
+    border: 1px solid black;
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 15px;
+  }
+  article .effect header {
+    height: 10px;
+    line-height: 10px;
+    background-color: #fff;
+    border: 1px solid black;
+  }
+  article .effect nav {
+    height: 20px;
+    line-height: 20px;
+    background-color: #fff;
+    border: 1px solid black;
+  }
+  article .effect main {
+    margin: 5px 0;
+    height: 150px;
+    background-color: #fff;
+  }
+  article .effect main aside{
+    margin-right: 5px;
+    background-color: #fff;
+    border: 1px solid black;
+  }
+  article .effect main article {
+    background-color: #fff;
+    border: 1px solid black;
+  }
+  article .effect footer {
+    margin-top: 15px;
+    background-color: #fff;
+    border: 1px solid black;
+  }
+  footer {
+    background-color: lightgreen;
+    text-align: center;
+    padding: 5px;
+    margin-top: 20px;
+  }
+</style>
+<body>
+  <header><h2>H5 New Features</h2></header>
+  <nav>
+    <ul>
+      <li>语义化标签</li>
+      <li>音频标签</li>
+      <li>视频标签</li>
+      <li>input标签</li>
+      <li>表单属性</li>
+    </ul>
+  </nav>
+  <main>
+    <aside>
+      <h4>Code</h4>
+      <div class="code">
+        <!-- 让浏览器不解析代码的三种方式： -->
+        <!-- 1 转义符 -->
+        <!-- &ltheader&gt头部&lt/header&gt -->
+        <!-- 2 xmp 标签定义预格式化文本 -->
+        <xmp>
+          <header></header>
+          <nav></nav>
+          <main></main>
+          <aside></aside>
+          <article></article>
+          <footer></footer>
+        </xmp>
+        <!-- 3 嵌入到 <script type='text/html' style='display:block'></scipt> -->
+        <!-- <script type="text/html" style='display:block'>
+          <main>主体区域</main>
+        </script>         -->
+      </div>
+      </aside>
+    <article>
+      <h4>Browser</h4>
+      <div class="effect">
+        <header>header</header>
+        <nav>nav</nav>
+        <main>
+          <aside>aside</aside>
+          <article>article</article>
+        </main>
+        <footer>footer</footer>
+      </div>
+    </article>
+  </main>
+  <footer>author: shayloyuki</footer>
+</body>
+</html>

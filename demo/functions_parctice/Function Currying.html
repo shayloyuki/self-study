@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+/*     // 函数柯里化的作用：参数复用，可以降低适用范围，提高适用性
+    // 第一步：定义柯里化函数
+    function curryingCheckByRegExp(regExp) {
+      return function(str) {
+        // console.log(regExp.test(str)) // 6 个 true
+        return regExp.test(str)
+      }
+    }
+    
+    // 第二步：将最外层函数保存为变量
+    // 校验手机
+    const checkPhone = curryingCheckByRegExp(/^1\d{10}$/)
+    // 校验邮箱
+    const checkEmail = curryingCheckByRegExp(/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/)
+    
+    // 第三步：调用第二层函数
+    // 校验手机号
+    checkPhone('15152525634');
+    checkPhone('13456574566'); 
+    checkPhone('18123787385'); 
+    // 校验邮箱
+    checkEmail('fsds@163.com'); 
+    checkEmail('fdsf@qq.com'); 
+    checkEmail('fjks@qq.com');  */ 
+    
+    // 不柯里化，使用通用函数：
+/*     缺点：
+    1、校验同一类型的数据时，相同的正则写了很多次
+    2、代码可读性较差，如果没有注释，我们并不能一下就看出来正则的作用 */
+    function checkByRegExp(regExp, str) {
+      return regExp.test(str)
+    }
+    
+    // 校验手机号
+    checkByRegExp(/^1\d{10}$/, '15152525634'); 
+    checkByRegExp(/^1\d{10}$/, '13456574566'); 
+    checkByRegExp(/^1\d{10}$/, '18123787385'); 
+    // 校验邮箱
+    checkByRegExp(/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/, 'fsds@163.com'); 
+    checkByRegExp(/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/, 'fdsf@qq.com'); 
+    checkByRegExp(/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/, 'fjks@qq.com');    
+  </script>
+</body>
+</html>

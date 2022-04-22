@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 方式一：打点
+
+    // 方式二：中括号
+    let user = {
+      name: "John",
+      age: 30,
+      'favourite food': 'apple'
+    };
+    
+    // 优点1、多个单词组成的属性名之间有空格时
+    console.log(user.name)
+    // console.log(user.favourite food) //报错
+    // console.log(user.'favourite food')//报错
+    console.log(user['favourite food'])
+    // user.favourite food = 'rice'//报错
+
+    // 优点2、key在运行时可计算得到，也可让用户来输入key，很灵活；但打点就只能返回 undefined
+
+    // 示例一
+    var key = "name";
+    console.log( user.key ) // undefined
+    console.log(user[key]) // John
+    console.log(user.name) //John
+
+    // 示例二
+    let key = prompt("What do you want to know about the user?", "name");
+    // access by variable
+    alert( user[key] ); // John (if enter "name")
+    alert( user.key) //undefined
+  </script>
+</body>
+</html>

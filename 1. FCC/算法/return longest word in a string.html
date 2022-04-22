@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+/*     function findLongestWordLength(str) {
+      // My Solution:
+      let lenArr = []
+      str.split(' ').map(item => {
+        lenArr.push(item.length)
+      })
+      const max = Math.max(...lenArr)
+      return max
+    } */
+
+    console.log(findLongestWordLength("The quick brown fox jumped over the lazy dog")) // 6
+    
+    function findLongestWordLength(str) {
+      // Solution Two:
+      const lenArr = str.split(' ').map(item => item.length)
+      return Math.max(...lenArr)
+    }
+
+/*     function findLongestWordLength(str) {
+      // Solution Three: for loop
+      const wordArr = str.split(' ')
+      let max = 0
+      for (let i = 0; i < wordArr.length; i++) {
+        if (wordArr[i].length > max) {
+          max = wordArr[i].length
+        }
+      }
+      return max
+    } */
+
+/*     function findLongestWordLength(str) {
+      // Solution Four: recursion
+      const wordArr = str.split(' ')
+
+      if (wordArr.length === 1) {
+        return wordArr[0].length
+      } else {
+        return Math.max(
+          wordArr[0].length,
+          findLongestWordLength(wordArr.slice(1).join(' '))
+        )
+      }
+    } */
+
+/*     function findLongestWordLength(str) {
+      // Solution Five: reduce()
+      return str.split(' ')
+        .reduce(
+          (longest, word) => Math.max(longest, word.length)
+          ,0
+        )
+    } */
+  </script>
+</body>
+</html>

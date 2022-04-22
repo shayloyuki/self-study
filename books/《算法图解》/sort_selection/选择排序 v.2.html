@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 题目：将数组元素按从小到大的顺序排列 -->
+  <script>
+    'use strict';
+    // 1、先编写一个用于找出数组中最小元素的函数
+    function findSmallestIndex (arr) {
+
+      var smallest = arr[0] // 存储最小的值
+      var smallest_index = 0 // 存储最小元素的索引
+
+      for (var i = 1; i < arr.length; i++) {
+        if (arr[i] < smallest) {
+          smallest = arr[i]
+          smallest_index = i
+        }
+      }
+
+      return smallest_index
+    }
+
+    // 2、使用这个函数来编写选择排序算法
+    function selectionSort (arr) { // 对数组进行排序
+
+      var newArr = []
+      var length = arr.length // length 固定，不会随着下面的 arr 改变而变化
+
+      // for (var i = 0; i < arr.length; i++) { // 错误写法，这里的 length 会越来越小
+      for (var i = 0; i < length; i++) {
+        var smallest_index = findSmallestIndex(arr) // 找出数组中最小的元素的索引
+        // newArr.push(arr.splice(smallest_index, 1)) // splice 返回的是被删除的元素组成的数组，不能直接添加到新数组中
+        newArr.push(arr.splice(smallest_index, 1)[0]) // 并将它加入到新数组中
+      }
+
+      return newArr
+    }
+
+    // 3、测试
+
+    console.log(selectionSort([5, 3, 6, 2, 10]))
+  </script>
+</body>
+</html>

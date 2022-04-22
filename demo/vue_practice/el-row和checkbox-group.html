@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- Layout 组件 -->
+<!--  isIndeterminate 默认 false，即没有任何子项被勾选
+      checkAll 默认 false，即没有全选 -->
+  <el-row>
+    <el-col :span="24">
+      <div class="grid-content bg-purple-dark">
+        <el-checkbox
+          :indeterminate="isIndeterminate"
+          v-model="checkAll"
+          @change="handleCheckAllChange"
+        >全选</el-checkbox>
+      </div>
+    </el-col>
+  </el-row>
+  <!-- 测试1：用 el-row 包裹 checkbox-group -->
+  <el-row>
+    <el-checkbox-group
+      v-model="checkedCities"
+      @change="handleCheckedCitiesChange"
+    >
+    <!-- el-col 有三个，要绑定多个子项 -->
+      <el-col :span="8">
+        <div class="grid-content bg-purple">
+          <!-- 每个 el-col 里面只有一个 checkbox -->
+          <el-checkbox
+            v-for="city in cities"
+            :label="city"
+            :key="city"
+          >{{city}}</el-checkbox>
+        </div>
+      </el-col>
+    </el-checkbox-group>
+  </el-row>
+
+ 
+  
+  
+    
+  
+
+
+
+
+
+  
+
+  <!-- 测试2 -->
+  <!-- Layout 组件 -->
+  <el-row>
+    <el-col :span="24">
+      <div class="grid-content bg-purple-dark">
+        <el-checkbox
+          :indeterminate="isIndeterminate"
+          v-model="checkAll"
+          @change="handleCheckAllChange"
+        >全选</el-checkbox>
+      </div>
+    </el-col>
+  </el-row>
+  <el-row>
+    <!-- el-col 有三个，要绑定多个子项 -->
+    <el-col :span="8">
+      <div class="grid-content bg-purple">
+        <!-- 每个 el-col 里面只有一个 checkbox -->
+        <el-checkbox
+          v-for="city in cities"
+          :label="city"
+          :key="city"
+        >{{city}}</el-checkbox>
+      </div>
+    </el-col>
+  </el-row>
+
+   <!-- checkbox 组件实现全选 -->
+  <el-checkbox-group v-model="checkedCities" @change="handleCheckedCitiesChange"></el-checkbox-group>
+</body>
+</html>

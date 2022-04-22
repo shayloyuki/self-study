@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+/*     function sumAll(arr) {
+      // My Solution:
+      // 1. 从小到大排序
+      const [min, max] = arr.sort((a, b) => {
+        a - b
+      })
+      // 2. 递归
+      if (min === max) {
+        return min
+      } else {
+        return min + sumAll([min + 1, max])
+      }
+    } */
+
+    console.log(sumAll([1,4])) // 10
+
+    // Solution Two: 类似 My Solution, 但三元表达式更精简，并且 spread operator 展开（复制）数组，更符合函数式编程
+/*     function sumAll(arr) {
+      const [first, last] = [...arr].sort((a, b) => a -b)
+      return first !== last
+        ? first + sumAll([first + 1, last])
+        : first
+    } */
+
+    // Solution Three: 更简单的算法
+/*     function sumAll(arr) {
+      // 1. find the min and max
+      const min = Math.min(arr[0], arr[1])
+      const max = Math.max(arr[0], arr[1])
+      // 2. 累加
+      let sum = 0
+      for (let i = min; i <= max; i++) {
+        sum += i
+      }
+      return sum
+    }
+ */
+
+    // Solution Four: 比 Solution Three 更精简的写法，此外，用 spread operator 展开数组 代替 arr[index]，更加灵活
+    function sumAll(arr) {
+      let sum = 0
+      for (let i = Math.min(...arr); i <= Math.max(...arr); i++) {
+        sum += i
+      }
+      return sum
+    }
+
+    // Solution Five: 数学原理: 两数之间所有的和 = {（数头 + 数尾）* 数的个数} / 2
+/*     function sumAll(arr) {
+      const startNum = arr[0]
+      const endNum = arr[1]
+
+      // 数的个数 = 两数之差的绝对值 + 1
+      const numCount = Math.abs(startNum - endNum) + 1
+
+      // 数学原理
+      const sum = ((startNum + endNum) * numCount) / 2
+      return sum
+    } */
+
+  </script>
+</body>
+</html>

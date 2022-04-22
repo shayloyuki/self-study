@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // Seven primitive(immutable) data types
+    const a = true
+    const b = null
+    const c = undefined
+    const d = 1
+    const D = NaN
+    const e = ''
+    const f = Symbol('one')
+    const g = BigInt('99999999999999999')
+
+    // One type of mutable items
+    const obj = {x: 'hello', y: 'everyone'}
+    const arr = [1, 2, 3]
+    const fun = (aug) => { console.log(aug) }
+
+
+    // typeof variable :return the type name
+    console.log(typeof a) // boolean
+    console.log(typeof b) // object // it's a bug
+    console.log(typeof c) // undefined
+    console.log(typeof d) // number
+    console.log(typeof D) // number
+    console.log(typeof e) // string
+    console.log(typeof f) // symbol
+    console.log(typeof g) // bigint
+
+    console.log(typeof obj) // object
+    console.log(typeof arr) // object
+    console.log(typeof fun) // function
+
+    // variable instanceof the name of Constructor Function :check if it's on the prototype chain
+    console.log(arr instanceof Array) // true
+    console.log(arr instanceof Object) // true
+    
+    console.log(fun instanceof Function) // true
+    console.log(fun instanceof Object) // true
+  </script>
+</body>
+</html>

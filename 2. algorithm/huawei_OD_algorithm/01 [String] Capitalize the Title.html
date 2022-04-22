@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[String] Capitalize the Title</title>
+</head>
+<body>
+  <script>
+    // Fast Solution
+    var capitalizeTitle = function(title) {
+        const data = title.split(" ")
+        
+        data.map( (item, index) => {
+          if(item.length > 2) {
+              const value = item.toLowerCase()
+              data[index] = value.charAt(0).toUpperCase() + value.slice(1);
+          }else {
+              data[index] = item.toLowerCase();
+          }
+        })
+        
+        return data.join(" ")
+    };
+
+
+
+    // My Solution
+    // var capitalizeTitle = function(title) {
+        
+    //     let titleArr = title.split(' ')
+    //     let len = titleArr.length
+    //     let sentenceArr = []
+        
+    //     for (let i = 0; i < len; i++) {
+            
+    //         if (titleArr[i].length < 3) { // the length of the word is less than three
+    //             sentenceArr.push(titleArr[i].toLowerCase())
+    //         } else { // Generally
+    //             sentenceArr.push(capFirstLetter(titleArr[i]))
+    //         }
+    //     }
+        
+    //     return sentenceArr.toString().replace(/,/g, ' ')
+    // };
+
+    // const capFirstLetter = (wordStr) => {
+    //     // 1. make the first letter toUpperCase
+    //     let wordArr = wordStr.split('')    
+    //     let firStr = wordArr.shift().toUpperCase()
+        
+    //     // 2. make the rest letters toLowerCase
+    //     let restStr = wordStr.slice(1).toString().toLowerCase()
+        
+    //     return firStr.concat(restStr)
+    // }
+
+
+    // Test Usage
+    console.log(capitalizeTitle('heLLo woRld'))
+  </script>
+</body>
+</html>
