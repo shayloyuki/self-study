@@ -35,7 +35,7 @@
 </div>
 <div class="date" style="display: flex; justify-content: space-between;">
     <b>Frontend Developer</b><br/>
-    <span>2020-present</sapn>
+    <span>2020-present</span>
 </div>
 
 <p align="left">Develop a  management system for industrial design and construction management. </p>
