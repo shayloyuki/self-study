@@ -17,7 +17,8 @@
 <body>
   <script>
     function checkCashRegister(price, cash, cid) {
-      function changeArr(due) {
+      // 返回 changeVal
+      function changeArr(due, drawCid) {
 
         let int = 0
         let float = 0
@@ -30,34 +31,79 @@
           int = parseInt(due.toString().split('.')[0])
           float = parseFloat('0.' + due.toString().split('.')[1])
         }
+        // console.log({int})
+        // console.log({float})
+
+        const len = drawCid.length
 
         // 1. 整数部分
-        const hundred = Math.floor(int / 100)
-        const twenty = Math.floor((int - hundred * 100) / 20)
-        const ten = Math.floor((int - hundred * 100 - twenty * 20) / 10)
-        const five = Math.floor((int - hundred * 100 - twenty * 20 - ten * 10) / 5)
-        const one = Math.floor((int - hundred * 100 - twenty * 20 - ten * 10 - five * 5) / 1)
+
+        let hundred = Math.floor(int / 100) * 100
+        if (hundred > drawCid[len - 1][1]) {
+          hundred = drawCid[len - 1][1]
+        }
+        // console.log({hundred})
+
+        let twenty = Math.floor((int - hundred) / 20) * 20
+        // 跟 drawCid 比较
+        if (twenty > drawCid[len -2][1]) {
+          twenty = drawCid[len - 2][1]
+        }
+        // console.log({twenty})
+
+        let ten = Math.floor((int - hundred - twenty) / 10) * 10
+        // 跟 drawCid 比较
+        if (ten > drawCid[len - 3][1]) {
+          ten = drawCid[len - 3][1]
+        }
+        // console.log({ten})
+
+        let five = Math.floor((int - hundred - twenty - ten) / 5) * 5
+        // 跟 drawCid 比较
+        if (five > drawCid[len - 4][1]) {
+          five = drawCid[len - 4][1]
+        }
+        // console.log({five})
+
+        let one = Math.floor((int - hundred - twenty - ten - five) / 1) * 1
+        // 跟 drawCid 比较
+        if (one > drawCid[len - 5][1]) {
+          one = drawCid[len - 5][1]
+        }
+        // console.log({one})
 
         // 2. 小数部分精度问题：加减法可以用参数乘以1000再用结果除以1000
-        const quarter = Math.floor((float / 0.25))
-        const dime = Math.floor(((float * 1000 - quarter * 0.25 * 1000) / 1000) / 0.1)
-        const nickel = Math.floor(((float * 1000 - quarter * 0.25 * 1000 - dime * 0.1 * 1000) / 1000) / 0.05)
-        const penny = ((float * 1000 - quarter * 0.25 * 1000 - dime * 0.1 * 1000 - nickel * 0.05 * 1000) / 1000) / 0.01
+        let quarter = Math.floor((float / 0.25)) * 0.25
+        // 跟 drawCid 比较
+        if (quarter > drawCid[len - 6][1]) {
+          quarter = drawCid[len - 6][1]
+        }        
+        // console.log({quarter})
 
-        const unitObj = {
-          'ONE HUNDRED': hundred,
-          'TWENTY': twenty,
-          'TEN': ten,
-          'FIVE': five,
-          'ONE': one,
-          'QUARTER': quarter,
-          'DIME': dime,
-          'NICKEL':  nickel,
-          'PENNY':  penny
-        }
-        for (unit in unitObj) {
-          
-        }
+        let dime = Math.floor(((float * 1000 - quarter * 1000) / 1000) / 0.1) * 0.1
+        // 跟 drawCid 比较
+        if (dime > drawCid[len - 7][1]) {
+          dime = drawCid[len - 7][1]
+        }  
+        // console.log({dime})
+
+        let nickel = Math.floor(((float * 1000 - quarter * 1000 - dime * 1000) / 1000) / 0.05) * 0.05
+        // 跟 drawCid 比较
+        if (nickel > drawCid[len - 8][1]) {
+          nickel = drawCid[len - 8][1]
+        }  
+        // console.log({nickel})
+
+        let penny = ((float * 1000 - quarter * 1000 - dime * 1000 - nickel * 1000) / 1000) / 0.01 * 0.01
+        // console.log({penny})
+        // 跟 drawCid 比较
+        if (penny > drawCid[len - 9][1]) {
+          // console.log('INSUFFICIENT_FUNDS')
+          return 'INSUFFICIENT_FUNDS'
+        } 
+        // console.log({penny})
+
+        // 如果 unit 对应的值为 0，则不返回该条信息
         const resArr = [
           ['ONE HUNDRED', hundred],
           ['TWENTY', twenty],
@@ -69,36 +115,40 @@
           ['NICKEL', nickel],
           ['PENNY', penny]
         ]
-        if (hundred > 0) {
-          return ['ONE HUNDRED', hundred]
-        }
-        return resArr
+
+        return resArr.filter(item => item[1] > 0)
       }
 
       // 应找零
-      let due = cash - price;
-      // console.log(due) // 0.5
+      let due = cash - price; 
+      // console.log({due})
 
       // 抽屉现金
-      const drawTotal = cid[0][1] * 0.01 + cid[1][1] * 0.05 + cid[2][1] * 0.1 + cid[3][1] * 0.25 + cid[4][1] * 1 + cid[5][1] * 5 + cid[6][1] * 10 + cid[7][1] * 20 + cid[8][1] * 100
-      // console.log(drawTotal) // 11766.4851
+      let sum = 0
+      for (let i = 0 ; i <= cid.length - 1; i++) {
+        sum += cid[i][1] * 1000
+      }
+      let drawTotal = sum / 1000
+      // console.log({drawTotal})
 
       // 状态码
       let key = ''
+
       // 找零数组
       let changeVal = []
 
-      if (drawTotal < due) {
-        // 收银机內的金额少于应找回的零钱数
-        key = 'INSUFFICIENT_FUNDS'
-        changeVal = []
-      } else if (drawTotal === due) {
+      // 判断条件
+      if (drawTotal === due) {
         // 收银机內的金额恰好等于应找回的零钱数
         key = 'CLOSED'
-        changeVal = cid
-      } else {
+        changeVal = cid        
+      } else if (changeArr(due, cid) !== 'INSUFFICIENT_FUNDS') {
         key = 'OPEN'
-        changeVal = changeArr(due)
+        changeVal = changeArr(due, cid)        
+      } else {
+        // 收银机內的金额少于应找回的零钱数，或者无法找零
+        key = 'INSUFFICIENT_FUNDS'
+        changeVal = []      
       }
 
       const resObj = {
@@ -108,7 +158,12 @@
       return resObj
     }
 
-    console.log(checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]))  
+  
+    console.log(checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]])) // {status: "OPEN", change: [["QUARTER", 0.5]]}
+
+    console.log(checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]])) // {status: "OPEN", change: [["TWENTY", 60], ["TEN", 20], ["FIVE", 15], ["ONE", 1], ["QUARTER", 0.5], ["DIME", 0.2], ["PENNY", 0.04]]
+
+    console.log(checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 1], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]])) // {status: "INSUFFICIENT_FUNDS", change: []}
   </script>
 </body>
 </html>
