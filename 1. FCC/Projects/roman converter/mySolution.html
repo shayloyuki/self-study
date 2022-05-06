@@ -1,0 +1,49 @@
+<!--
+ * @Author: luoxue
+ * @Date: 2022-05-06 16:26:46
+ * @LastEditors: luoxue
+ * @LastEditTime: 2022-05-06 16:31:46
+ * @FilePath: \Projects\roman converter\mySolution.html
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function convertToRoman(num) {
+      let res = ''
+
+      // 1. 千及其以上
+      let qian = Math.floor(num / 1000 % 10)
+      let qianRes = Array(qian + 1).join('M')
+
+      // 2. 千以下
+      const map = [
+        ['',"I","II","III","IV","V","VI","VII","VIII","IX"],
+        ['',"X","XX","XXX","XL","L","LX","LXX","LXXX","XC"],
+        ['',"C","CC","CCC","CD","D","DC","DCC","DCCC","CM"],
+      ]
+
+      let restRes = ''
+      let ge = Math.floor(num % 10)
+      let shi = Math.floor(num / 10 % 10)
+      let bai = Math.floor(num / 100 % 10)
+
+      let geRes = map[0][ge]
+      let shiRes = map[1][shi]
+      let baiRes = map[2][bai]
+
+      restRes = baiRes + shiRes + geRes
+
+      return res= qianRes + restRes; 
+    }
+    console.log(convertToRoman(2685.09)) // 'MMDCLXXXV'
+  </script>
+</body>
+</html>

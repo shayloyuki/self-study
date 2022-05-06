@@ -1,0 +1,84 @@
+<!--
+ * @Author: luoxue
+ * @Date: 2022-05-06 15:52:44
+ * @LastEditors: luoxue
+ * @LastEditTime: 2022-05-06 15:53:50
+ * @FilePath: \Projects\converter2.html
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 数字转成罗马数字
+    var intToRoman = function(num) {
+        let map = {
+            1: 'I',
+            5: 'V',
+            10: 'X',
+            50: 'L',
+            100: 'C',
+            500: 'D',
+            1000: 'M'
+        }
+        // 标识位数
+        let digits = 1
+        // 结果
+        let result = ''
+        while(num) {
+            let current = num % 10
+            if (current < 4) {
+                result = map[digits].repeat(current) + result
+            } else if (current === 4) {
+                result = map[digits] + map[digits * 5] + result
+            } else if (current > 4 && current < 9) {
+                result = map[digits * 5] + map[digits].repeat(current - 5) + result
+            } else {
+                result = map[digits] + map[digits * 10] + result
+            }
+            digits *= 10
+            num = Math.trunc(num/10)
+        }
+        return result
+    };
+
+    // 罗马数字转成数字
+    var intToRoman = function(num) {
+    let map = {
+        1: 'I',
+        5: 'V',
+        10: 'X',
+        50: 'L',
+        100: 'C',
+        500: 'D',
+        1000: 'M'
+    }
+    // 标识位数
+    let digits = 1
+    // 结果
+    let result = ''
+    while(num) {
+        let current = num % 10
+        if (current < 4) {
+            result = map[digits].repeat(current) + result
+        } else if (current === 4) {
+            result = map[digits] + map[digits * 5] + result
+        } else if (current > 4 && current < 9) {
+            result = map[digits * 5] + map[digits].repeat(current - 5) + result
+        } else {
+            result = map[digits] + map[digits * 10] + result
+        }
+        digits *= 10
+        num = Math.trunc(num/10)
+    }
+    return result
+};
+  </script>
+</body>
+</html>

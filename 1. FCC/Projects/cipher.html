@@ -1,0 +1,43 @@
+<!--
+ * @Author: luoxue
+ * @Date: 2022-05-06 16:41:42
+ * @LastEditors: luoxue
+ * @LastEditTime: 2022-05-06 17:37:14
+ * @FilePath: \Projects\cipher.html
+ * @Description: ROT13 decode
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>    
+  function rot13(str) {
+    // 1. 确保大写，分割为数组
+    const arr = str.toUpperCase().split('')
+    // 2. 转码函数
+    function convert(sym) {
+      const map = [
+        ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'],
+        ['N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+      ]
+      if (map[0].indexOf(sym) !== -1) {
+        // 在第一行中存在
+        return map[1][map[0].indexOf(sym)]
+      } else {
+        // 在第二行中存在
+        return map[0][map[1].indexOf(sym)]
+      }
+    }
+    // 3. 遍历
+    return arr.map(item => /[A-Z]/.test(item) ? convert(item) : item).join('')
+  }
+
+  console.log(rot13('SERR PBQR PNZC')) // 'FREE CODE CAMP'
+  </script>
+</body>
+</html>

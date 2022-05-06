@@ -1,0 +1,77 @@
+<!--
+ * @Author: luoxue
+ * @Date: 2022-05-06 13:34:15
+ * @LastEditors: luoxue
+ * @LastEditTime: 2022-05-06 15:45:44
+ * @FilePath: \Projects\roman num conventer.html
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>converter</title>
+</head>
+<body>
+  <script>
+    // 1. 千位数及其以上： 多个 'M'
+    // 2. 千位数以下：个，十，百
+    function integer_to_roman(num) {
+      if (typeof num !== 'number') 
+      return false; 
+
+      var digits = String(+num).split(""),
+      // 千 ： 'M'
+      // 百，十，个：根据 key 找到对应的值
+      key = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM",
+      "","X","XX","XXX","XL","L","LX","LXX","LXXX","XC",
+      "","I","II","III","IV","V","VI","VII","VIII","IX"],
+      roman_num = "",
+      i = 3;
+
+      // 字符串前面带加号，会把结果变为数字
+      // console.log(+'27') // 27
+      // console.log(-'27') // -27
+
+      // String() 转为字符串
+
+      console.log(digits) // ['2', '7']
+      // console.log(digits.pop()) // '7'
+      // console.log(+digits.pop()) // 7
+      
+
+      while (i--) {
+        // --> i = 2
+        // console.log(+digits.pop() + (i * 10)) // 27
+        // console.log(key[+digits.pop() + (i * 10)]) // "VII"
+        // console.log(roman_num) // "VII"
+
+        // --> i = 1
+        // console.log(+digits.pop() + (i * 10)) // 12
+        // console.log(key[+digits.pop() + (i * 10)]) // "XX"
+        // console.log(roman_num) // "XXVII"
+
+        // --> i = 0
+        // console.log(+digits.pop() + (i * 10)) // 0
+        // console.log(key[+digits.pop() + (i * 10)]) // " "
+        // console.log(roman_num) // "XXVII"
+
+        roman_num = (key[+digits.pop() + (i * 10)] || "") + roman_num;
+      }
+
+      // 针对大于等于千 的数字
+      console.log(digits) // ['2', '7']
+      // console.log(digits.join("")) // '27'
+      // console.log(+digits.join("")) // 27
+      // console.log(Array(28)) // 长度为 28 的空数组
+      // // join() 数组转字符串
+
+      return Array(+digits.join("") + 1).join("M") + roman_num;
+    }
+
+    console.log(integer_to_roman(27000)); // 'XXVII' // MMMMMMMMMMMMMMMMMMMMMMMMMMM
+  </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!--
+ * @Author: luoxue
+ * @Date: 2022-05-06 15:57:09
+ * @LastEditors: luoxue
+ * @LastEditTime: 2022-05-06 16:07:35
+ * @FilePath: \Projects\converter3.html
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 万以下的
+    function convert(num) {
+    var c=[
+          ['',"I","II","III","IV","V","VI","VII","VIII","IX"],
+          ['',"X","XX","XXX","XL","L","LX","LXX","LXXX","XC"],
+          ['',"C","CC","CCC","CD","D","DC","DCC","DCCC","CM"],
+          ['',"M","MM","MMM"]
+          ];
+    // JavaScript % / 运算有小数，需要用Math.floor向下取整
+
+    // 个
+    console.log(num % 10) // 8.099999999999909
+    // 十
+    console.log(num / 10 % 10) // 5.810000000000002
+    // 百
+    console.log(num / 100 % 10) // 6.580999999999996
+    // 千
+    console.log(num / 1000 % 10) // 3.6001
+    console.log(Math.floor(num / 1000 % 10)) // 3
+
+    return c[3][Math.floor(num / 1000 % 10)]+c[2][Math.floor(num / 100 % 10)]+c[1][Math.floor(num / 10 % 10)]+c[0][Math.floor(num % 10)];
+    }
+
+    console.log(convert(3658.1)) // 'XXXVI'
+
+  </script>
+</body>
+</html>
