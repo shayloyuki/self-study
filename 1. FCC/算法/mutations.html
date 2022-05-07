@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>不区分大小写</title>
+</head>
+<body>
+  <script>
+    // includes() 区分大小写
+    function mutation(arr) {
+      const singLetter = arr[1].split('')
+      return singLetter.every(function(ele) {
+        return arr[0].includes(ele) || arr[0].includes(ele.toUpperCase()) || arr[0].includes(ele.toLowerCase())
+      })
+    }
+
+    console.log(mutation(["hello", "Hello"]))
+  </script>
+</body>
+</html>
