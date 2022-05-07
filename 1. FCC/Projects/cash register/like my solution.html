@@ -1,0 +1,96 @@
+<!--
+ * @Author: luoxue
+ * @Date: 2022-05-07 19:25:29
+ * @LastEditors: luoxue
+ * @LastEditTime: 2022-05-07 19:58:30
+ * @FilePath: \Projects\cash register\like my solution.html
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  const checkCashRegister = (price, cash, cid) => {
+
+    /* 1. declare the currency map */
+    const UNIT_AMOUNT = {
+      "PENNY": .01,
+      "NICKEL": .05,
+      "DIME": .10,
+      "QUARTER": .25,
+      "ONE": 1.00,
+      "FIVE": 5.00,
+      "TEN": 10.00,
+      "TWENTY": 20.00,
+      "ONE HUNDRED": 100.00
+    }
+
+    /* 2. calculate the total amount in the drawer */
+    let totalCID = 0;
+    // nice
+    for (let element of cid) {
+      totalCID += element[1];
+    }
+    // nice
+    totalCID = totalCID.toFixed(2);
+
+    /* 3. calculate the change to give the customer */
+    let changeToGive = cash - price;
+
+    /* 4. Get result */
+    const changeArray = [];
+
+    if (changeToGive > totalCID) {
+      return { status: "INSUFFICIENT_FUNDS", change: changeArray };
+    } else if (changeToGive.toFixed(2) === totalCID) {
+      return { status: "CLOSED", change: cid };
+    } else {
+      // nice 由大到小排列了
+      cid = cid.reverse();
+      console.log(cid)
+      // important
+      for (let elem of cid) {
+        // 要返回的每条数组
+        let temp = [elem[0], 0];
+        // 4.1 important 要找零的钱大于这档面额，并且抽屉内有至少一张这档面额的钱
+        // UNIT_AMOUNT[elem[0]] 计算时要先内后外。elem[0] 第一次为 'ONE HUNDRED'，则结果为 UNIT_AMOUNT['ONE HUNDRED'], 即 100
+        // elem[1] > 0 说明这档面额的总计金额不为0
+        while (changeToGive >= UNIT_AMOUNT[elem[0]] && elem[1] > 0) {
+          // 更新要返回的数据内的金额
+          temp[1] += UNIT_AMOUNT[elem[0]];
+          // 更新抽屉内的剩余金额
+          elem[1] -= UNIT_AMOUNT[elem[0]];
+          // 减去已经取过的钱，继续下一个面额
+          changeToGive -= UNIT_AMOUNT[elem[0]];
+          // 解决计算精度问题
+          changeToGive = changeToGive.toFixed(2);
+        }
+        // 过滤掉不需要找零的某些面额的钱
+        if (temp[1] > 0) {
+          changeArray.push(temp);
+        }
+      }
+    }
+
+    // Exception
+    if (changeToGive > 0) {
+      return { status: "INSUFFICIENT_FUNDS", change: [] };
+    }
+
+    return { status: "OPEN", change: changeArray};
+  }    
+
+// console.log(checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]])) // {status: "OPEN", change: [["QUARTER", 0.5]]}
+
+// console.log(checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]])) // {status: "OPEN", change: [["TWENTY", 60], ["TEN", 20], ["FIVE", 15], ["ONE", 1], ["QUARTER", 0.5], ["DIME", 0.2], ["PENNY", 0.04]]
+
+console.log(checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 1], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]])) // {status: "INSUFFICIENT_FUNDS", change: []}
+  </script>
+</body>
+</html>

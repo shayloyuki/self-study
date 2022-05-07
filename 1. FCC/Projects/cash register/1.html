@@ -1,0 +1,102 @@
+<!--
+ * @Author: luoxue
+ * @Date: 2022-05-07 18:16:42
+ * @LastEditors: luoxue
+ * @LastEditTime: 2022-05-07 19:18:27
+ * @FilePath: \Projects\cash register\1.html
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<!-- The question that I need to answer is “do I have enough currency in my register to provide the necessary change?” With the information given, I should be able to figure out whether I have enough money or not to tender change. The challenge asks that I return one of three results: tender the correct change with the amount of each currency, indicate that there are insufficient funds, and if the change is the same as the amount inside the register, to tender the change and close the register. -->
+  <script>
+// Double-check:
+/*  1. 面额从大到小，每一档面额最多能 cover 掉多少比例的找零
+    2. 若 1 中需要的每一档的面额的钱张数，大于抽屉里的张数，则以抽屉内的为准。 
+*/
+
+
+    // 变量含义说明：
+/*  price: 应支付金额
+    cash: 顾客给的现金金额
+    cid: The amount of each currency in my cash register — presented in an array data structure. 抽屉内现金所构成的数组。每一项的第一个值为面额（从小到大排序），第二个值为当前面额总计金额
+    change: 应找零金额
+      money：对应 change
+    database: 对象。属性名为面额（从大到小排序），属性值为对应价值
+      base: 对应 database 对象中的属性名，表示面额
+      balance: 对应 database 对象中的属性值，表示该面额钱的对应价值
+    result：需要计算从抽屉取出多少钱时，所构成的数组，面值由大到小排序
+    remain: 每次从抽屉中取出钱后，抽屉中剩下的钱总额
+    num: 理想情况下（若抽屉内该档的钱充足），需要几张某面额（从大到小）的钱就能全部 cover 找零
+    newMoney: 实际上（不超过抽屉内该档的钱），该档的钱能 cover 多少比例的找零
+*/
+    function checkCashRegister(price, cash, cid) {
+
+      let change=cash-price;
+
+      // important to declare
+      let database={"ONE HUNDRED":100,"TWENTY":20,"TEN":10,"FIVE":5,"ONE":1,"QUARTER":0.25,"DIME":0.1,"NICKEL":0.05,"PENNY":0.01};
+
+      let result=[];
+      let remain=0;
+
+      // First logical block for recursion
+      let func=function(money,base,balance){
+
+        let num=Math.floor(money/database[base]);
+        let newMoney=money;
+
+        // 1. 在这一档中，需要找零的钱 大于 抽屉内的钱：以 抽屉内的钱 为准
+        if(num*database[base]>=balance){
+          // use * 1000 / 1000 method to solve the problem of incorrect operations
+          // also can use .toFixed(2)
+          newMoney=(money*1000-balance*1000)/1000;
+          result.push([base,balance]);
+        }else if(num*database[base]<balance && num!=0){
+        // 2. 需要找零的钱 大于 抽屉内的钱，并且需要找零的钱在这一档中存在：以 需要找零的钱 为准
+          newMoney=(money*1000-num*database[base]*1000)/1000;
+          result.push([base,num*database[base]]);
+          // remain 每次找零后抽屉剩下的钱
+          remain=(remain*1000+balance*1000-num*database[base]*1000)/1000;
+        }else if(num==0){
+          // 3. 需要找零的钱在这一档中不存在
+          newMoney=money;
+          remain=(remain*1000+balance*1000)/1000;
+        }
+
+        return newMoney;   
+      }
+
+      // newMoney > 0，则说明最小的 unit 仍然不够
+      // recursion as below； cid 从末尾到开头遍历 
+      for(let i=8;i>=0;i--){
+        change=func(change,cid[i][0],cid[i][1]);
+      }
+
+      // Second logical block
+      if(change>0){
+        // 说明最小的 unit 仍然不够
+        return {"status":"INSUFFICIENT_FUNDS","change":[]};
+      }else if(change==0 && remain==0){
+        // remain 每次找零后抽屉剩下的钱
+        return {"status":"CLOSED","change":cid};
+      }else if(change==0 && remain>0){
+        return {"status":"OPEN","change":result};
+      }
+    }    
+
+    console.log(checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]])) // {status: "OPEN", change: [["QUARTER", 0.5]]}
+
+    console.log(checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]])) // {status: "OPEN", change: [["TWENTY", 60], ["TEN", 20], ["FIVE", 15], ["ONE", 1], ["QUARTER", 0.5], ["DIME", 0.2], ["PENNY", 0.04]]
+
+    console.log(checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 1], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]])) // {status: "INSUFFICIENT_FUNDS", change: []}
+  </script>
+</body>
+</html>
