@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<!--   
+  str.substring(start, end)
+
+	1. 截取的字符串：包含 start， 不包含 end
+	2. 若 end 省略，则代表从 start 一直到结束。
+ -->
+  <script>
+    function confirmEnding(str, target) {
+      // Solution one:
+      // return str.endsWith(target);
+
+      // Solution two:
+      const tarLen = target.length
+      return str.substring(str.length - tarLen) === target
+    }
+
+    console.log(confirmEnding("Bastian", "n"))
+  </script>
+</body>
+</html>
