@@ -8,23 +8,37 @@
 -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
   <script>
     function destroyer(arr) {
-      // arr.filter(ele => {
-      //   ele !== 2 && ele !== 3
-      // })
-      // return arr;
-      console.log(arr)
+      /* 固定值写法： */
+      // let remain = arguments[1]
+      // let remain2 = arguments[2]
+      // let res = array.filter(ele => ele !== remain).filter(ele => ele !== remain2)
+      // return res
+
+      /* OOP 写法： */
+      let array = [arr]
+      let num = arguments.length - 1
+
+      for (let i = 0; i < num; i++) {
+        array.push(array[i].filter(ele => ele !== arguments[i+1]))
+      }
+
+      return array[array.length -1]
+
     }
 
-    destroyer([1, 2, 3, 1, 2, 3], 2, 3);
+    console.log(destroyer([1, 2, 3, 1, 2, 3], 2, 3))
   </script>
 </body>
+
 </html>

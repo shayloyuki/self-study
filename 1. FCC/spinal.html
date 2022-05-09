@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+/*     const str = "This Is Spinal Tap"
+    console.log(str.match(/M/g) === null)// null
+    console.log(str.match(/s/g)) //  ['s', 's']
+
+    console.log(str[5]) // 'I' */
+
+    function spinalCase(str) {
+      let res = ''
+      // 1. 所有分隔符变为空格
+      let temp = str.replace(/\W/g, '-')
+      console.log({temp})
+      // 2. 判断所有大写字母前是否有空格，没有就加空格
+      let arr = temp.match(/[A-Z]/g)
+      console.log({arr})
+      if (arr !== null) {
+        // 存在大写字母
+        arr.forEach(ele => {
+          // 第一次出现的位置
+          let index = temp.indexOf(ele)
+          console.log({index})
+
+          // while (index !== -1) {
+          //   // 把该位置的大写字母变为小写
+          //   let lowerStr = temp[index].toLowerCase()
+          //   console.log({lowerStr})
+          //   if (temp[index - 1] !== ' ') {
+          //     // 转为数组
+          //     let tempArr = temp.split('')
+          //     console.log({tempArr})
+          //     // 大写字母前没有空格，加上空格
+          //     tempArr.splice(index, 1, ' ', lowerStr)
+          //   } else {
+          //     tempArr.splice(index, 0, lowerStr)
+          //   }
+          // }          
+        })
+      }   
+
+      // console.log({tempArr})
+      // // 3. 转字符串，全部变为小写, 去除首尾的空格
+      // res = tempArr.join('').toLowerCase().trim()
+      // console.log({res})
+      return res
+    }
+
+    console.log(spinalCase('AllThe-small Things'))
+  </script>
+</body>
+</html>
