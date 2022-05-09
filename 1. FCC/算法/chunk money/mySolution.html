@@ -1,0 +1,107 @@
+<!--
+ * @Author: luoxue
+ * @Date: 2022-05-09 09:26:16
+ * @LastEditors: luoxue
+ * @LastEditTime: 2022-05-09 18:22:16
+ * @FilePath: \1. FCC\算法\chunk money\mySolution.html
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<!-- Write a function that splits an array (first argument) into groups the length of size (second argument) and returns them as a two-dimensional array. -->
+  <script>
+    function chunkArrayInGroups(arr, size) {
+      /* My Solution */
+      // let resArr = []
+
+      // while (arr.length > size) {
+      //   resArr.push(arr.splice(0, size))
+      // }
+      // resArr.push(arr)
+      
+      // return resArr
+
+
+      /* Solution Two: index 取余是否为 size - 1，实际上是 index + 1 是否为 size 的倍数 */
+      // 倍数： parseInt(index + 1) % size === 0
+      // let temp = [];
+      // let result = [];
+
+      // for (let a = 0; a < arr.length; a++) {
+      //   if (a % size !== size - 1) temp.push(arr[a]);
+      //   else {
+      //     temp.push(arr[a]);
+      //     result.push(temp);
+      //     temp = [];
+      //   }
+      // }
+
+      // if (temp.length !== 0) result.push(temp);
+      // return result;
+
+
+      /* 变体 */
+      // let temp = [];
+      // let result = [];
+
+      // for (let a = 0; a < arr.length; a++) {
+      //   if ((a + 1) % size !== 0) {
+      //     temp.push(arr[a]);
+      //   }
+      //   else {
+      //     temp.push(arr[a]);
+      //     result.push(temp);
+      //     temp = [];
+      //   }
+      // }
+
+      // if (temp.length !== 0) result.push(temp);
+      // return result;
+
+      /*  Solution Three: for 循环，之前试过. slice() 复制的数组，包含 start，不包含 end */
+      // let resArr = []
+      // for (let i = 0; i < arr.length; i+=size) {
+      //   resArr.push(arr.slice(i, i + size))
+      // }
+      // return resArr
+
+      /* Solution Four： 是 Three 的变体。把 for 循环换成了 while 循环 */
+      // let newArr = [];
+      // let i = 0;
+
+      // while (i < arr.length) {
+      //   newArr.push(arr.slice(i, i + size));
+      //   i += size;
+      // }
+      // return newArr;
+
+      /* Solution Five： 是 Four 的变体，用的 splice */
+      // let newArr = [];
+      // while (arr.length > 0) {
+      //   newArr.push(arr.splice(0, size));
+      // }
+      // return newArr;
+
+
+      /* Solution Six: Recursion */
+      if (arr.length <= size) {
+        return [arr];
+      } else {
+        return [arr.slice(0, size)].concat(
+          chunkArrayInGroups(arr.slice(size), size)
+        );
+      }
+    }
+
+    console.log(chunkArrayInGroups(["a", "b", "c", "d"], 2))
+    // console.log([['a', 'b']].concat([['c', 'd']]))
+  </script>
+</body>
+</html>
