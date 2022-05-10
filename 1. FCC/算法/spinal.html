@@ -1,0 +1,72 @@
+<!--
+ * @Author: luoxue
+ * @Date: 2022-05-10 08:49:53
+ * @LastEditors: luoxue
+ * @LastEditTime: 2022-05-10 10:17:35
+ * @FilePath: \1. FCC\算法\spinal.html
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function spinalCase(str) {
+      /* 1. 转为数组 */
+      let arr = str.split('')
+      // console.log({arr})
+      /*
+          2. 若存在大写字母： 
+            2.1 将大写变为小写；
+            2.2 若位置不是 0：判断前一个位置是不是分隔符，若是，则将它变为短杠；若不是，则将它加短杠
+      */
+      while (/[A-Z]/g.test(str)) {
+        const upperArr = str.match(/[A-Z]/g)
+        // 去重
+        // console.log(Array.from(new Set(upperArr))) ['A', 'T']
+        let uniqueArr = Array.from(new Set(upperArr))
+
+        uniqueArr.forEach(ele => { 
+          console.log(arr.indexOf(ele)) // 0, 3          
+          let index = arr.indexOf(ele)
+          // 将大写变为小写
+          arr.splice(index, 1, ele.toLowerCase())
+          console.log({arr})
+
+          //不是开头的字母
+          if (index !== 0) {
+            // console.log(arr[index - 1])
+            if (arr[index - 1] === ' ' || arr[index - 1] === '_') {
+              // 变为短杠
+              arr.splice(index - 1, 1, '-')             
+            } else if (/[a-z]/g.test(arr)){
+              // 添加短杠
+              arr.splice(index, 0, '-')
+            }
+          }
+          console.log({arr})
+          str = arr.join('')
+          console.log({str})
+          }
+        )
+      }
+
+      console.log('str 最终为：',str)
+      // console.log({arr})
+
+      /* 3. 将所有的空格、下划线变为短杠 */
+      
+      let res = str.replace(/\s|_/g,'-')
+      return res
+    }
+
+    console.log(spinalCase('AllThe-small Alice_Things hello_world'))
+
+  </script>
+</body>
+</html>
