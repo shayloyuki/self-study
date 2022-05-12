@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function translatePigLatin(str) {
+      const first = str.substr(0, 1)
+      const vowel = ['a', 'e', 'i', 'o', 'u']
+      if (vowel.includes(first)) {
+        // begins with a vowel
+        return str + 'way'
+      } else {
+        // begins with a consonant
+        const arr = str.split('')
+
+        for (let i = 1; i < arr.length; i++) {
+          
+          for (let j = 0; j < vowel.length; j++) {
+            if (arr[i] === vowel[j]) {
+              const index = str.indexOf(arr[i])
+              return str.substr(index) + str.substr(0, index) + 'ay'
+              break
+            }
+          }
+
+        }
+
+        return str + 'ay'
+      }
+    }
+
+    console.log(translatePigLatin("consonant"))
+    console.log(translatePigLatin("california")) // aliforniacay
+    console.log(translatePigLatin("algorithm"))
+  </script>
+</body>
+</html>
