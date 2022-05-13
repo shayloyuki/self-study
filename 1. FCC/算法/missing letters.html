@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function fearNotLetter(str) {
+      // 1. get the range array: the first and the last character
+      const first = str[0]
+      const last = str[str.length - 1]
+
+      const alphArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+      const firstIndex = alphArr.indexOf(first)
+      const lastIndex = alphArr.indexOf(last)
+
+      const range = alphArr.slice(firstIndex, lastIndex + 1)
+
+      // 2. test
+      const arr = str.split('')
+
+      if (arr === range) { return undefined }
+        
+      // find every letter of range in arr
+      for (let i = 0; i < range.length; i++) {
+        if (arr.indexOf(range[i]) === -1) {
+          return range[i]
+          break
+        }
+      }
+
+    }
+
+    console.log(fearNotLetter("abce"))
+  </script>
+</body>
+</html>

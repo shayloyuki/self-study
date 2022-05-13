@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /* PS: map() 中不能用 {} */
+    function pairElement(str) {
+      // 1. loop
+      // 2. AT or CG ?
+      const arr = str.split('')
+
+      const pair = {
+        'A': 'T',
+        'T': 'A',
+        'C': 'G',
+        'G': 'C'
+      }
+
+      let res = arr.map(ele => [ele, pair[ele]])
+
+      return res;
+    }
+
+    pairElement("GCG")
+  </script>
+</body>
+</html>

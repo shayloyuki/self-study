@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function convertHTML(str) {
+      // 字符对应关系
+      const pair = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&apos;'
+      }
+
+      for(let key in pair) {
+
+        if (str.includes(key)) {
+          // 全局替换
+         str = str.replaceAll(key, pair[key])
+        }
+
+      }
+
+      return str
+  
+    }
+
+    console.log(convertHTML("<>"))
+    console.log(convertHTML("abc"))
+    console.log(convertHTML("Dolce & Gabbana"))
+    console.log(convertHTML("Hamburgers < Pizza < Tacos"))
+  </script>
+</body>
+</html>
