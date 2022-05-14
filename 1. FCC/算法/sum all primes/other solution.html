@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 质数：只能被 1 和 它自己 整除
+/*     function sumPrimes(num) {
+
+      function isPrime(num) {
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+          if (num % i === 0) {
+            return false
+          }
+        }
+        return true
+      }
+
+      let sum = 0
+      for (let i = 2; i <= num; i++) {
+        if (isPrime(i)) {
+          sum+=i
+        }
+      }
+
+      return sum
+    }
+
+    console.log(sumPrimes(10)) // 17
+    console.log(sumPrimes(977)) // 73156 */
+
+
+    function isPrime(num) {
+      for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) {
+          return false
+        }
+      }
+      return true
+    }
+
+    console.log(isPrime(9)) // false
+  </script>
+</body>
+</html>

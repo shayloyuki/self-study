@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 判断是否是质数：从 2 到 Math.sqrt(num) 之间的数字中，若 num 可以整除它，则它不是质数，否则是质数-->
+  <script>
+    function sumPrimes(num) {
+      let arr = [2]
+      if (num === 2) {
+        return 2
+      } else if (num <= 1) {
+        console.log('请输入大于 1 的整数')
+      } else {
+        /* 1. get the range of primes */
+        // 是大于 2 的奇数
+        for (let i = 3; i <= num; i+=2) {
+
+          // 且不能被以下数字整除
+          const testArr = [3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37]
+          for (let n = 0; n < testArr.length; n++) {
+
+            if (i <= testArr[n]) {
+              arr.push(i)
+              break
+            } else if (i % testArr[n] === 0) {
+              break
+            } else {
+              if (n === testArr.length - 1) arr.push(i)
+              else continue
+            }
+
+          }
+          
+        }
+        console.log(arr)
+
+        /* 2. sum */
+        let sum = 0
+        for (let m = 0; m < arr.length; m++) {
+          sum+=arr[m]
+        }
+
+        return sum
+      }
+    }
+
+    console.log(sumPrimes(977)) // 73156
+    console.log(sumPrimes(1400)) // 141636 140267
+
+    // PS: 若 testArr[testArr.length - 1] * testArr[testArr.length - 1] < num， 则上述代码成立；
+    // 否则，需要给 testArr push 一个质数
+  </script>
+</body>
+</html>
