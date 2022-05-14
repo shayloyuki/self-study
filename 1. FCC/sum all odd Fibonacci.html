@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  function sumFibs(num) {
+    /* 1. Fibonacci sequence in the range*/
+    // recursion
+    function getFibs(arr, num) {
+      let len = arr.length
+      let next = arr[len - 1] + arr[len - 2]
+      
+      if (next > num) {
+        return arr
+      } else {
+        return getFibs([...arr, next], num)
+      }
+    }
+
+    /* 2. sum all the odd */
+    const fibsArr = getFibs([1, 1], num)
+    let sum = 0
+    fibsArr.forEach(ele => {
+      if (ele % 2 === 1) {
+        sum+=ele
+      }
+    })
+    return sum
+  }
+
+  console.log(sumFibs(4))
+  console.log(sumFibs(1000))
+</script>
+</body>
+</html>
