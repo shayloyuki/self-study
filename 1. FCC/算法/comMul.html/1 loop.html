@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function smallestCommons(arr) {
+      /* sort */
+      const [min, max] = arr.sort((a, b) => a - b)
+
+      /* 要被整除的次数 */
+      const numberDivisors = max - min + 1
+      
+      /* 最小公倍数，不得大于 所有数字的乘积 */
+      let upperBound = 1
+      for (let i = min; i <= max; i++) {
+        upperBound*=i
+      }
+      
+      /* 检测最小公倍数的方法：
+      一旦 max 的倍数 multiply 能够被 min 整除，则 multiply 是 max 和 min 的最小公倍数 */
+      for (let multiply = max; multiply <= upperBound; multiply+=max) {
+
+        let divisorCount = 0
+
+        /* 该最小公倍数，还要能被每一个中间的数字整除，因此要比较：能整数的次数 是否等于 要被整除的次数 */
+        for (let i = min; i <= max; i++) {
+          if (multiply % i === 0) {
+            divisorCount++
+          }
+        }
+
+        if (divisorCount === numberDivisors) {
+          return multiply
+        }
+
+      }
+    }
+
+    console.log(smallestCommons([5, 1]))
+  </script>
+</body>
+</html>

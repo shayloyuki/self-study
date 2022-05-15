@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  function smallestCommons(arr) {
+    // Setup
+    const [min, max] = arr.sort((a, b) => a - b);
+    const range = Array(max - min + 1) //  [empty × 5]
+      .fill(0) // [0, 0, 0, 0, 0]
+      .map((_, i) => i + min); // [1, 2, 3, 4, 5]
+
+    // Largest possible value for SCM
+    /* 
+      arr.reduce() 的参数：
+        1. callback 函数：累计值，当前元素，index, 被调用的数组
+        2. 初始值 （可选）
+    */
+    const upperBound = range.reduce((prod, curr) => prod * curr);
+    console.log(upperBound) // 120
+
+    // Test all multiples of 'max'
+    for (let multiple = max; multiple <= upperBound; multiple += max) {
+      // Check if every value in range divides 'multiple'
+      // 使用 arr.every() 检查数组中的每一个元素是否符合标准
+      const divisible = range.every((value) => multiple % value === 0);
+      if (divisible) {
+        return multiple;
+      }
+    }
+  }
+
+  console.log(smallestCommons([1, 5]))
+  
+/*   const arr = [0, 0, 0, 0, 0]
+  const min = 1
+  // console.log(arr.map((_, i) => i + min)) // [1, 2, 3, 4, 5]
+
+  let res = arr.map(function (_, ind) {
+    return ind
+  })
+  console.log(res) // [0, 1, 2, 3, 4]
+  // _在函数内是入参命名，表示不会使用这个参数，它是数组中的值， 第二个参数是 index
+  // https://blog.csdn.net/weixin_42322738/article/details/121564683 */
+  </script>
+</body>
+</html>
