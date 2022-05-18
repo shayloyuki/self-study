@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function binaryAgent(str) {
+      const arr = str.split(' ')
+
+      let res = []
+      arr.forEach(ele => {
+        // 二进制转为十进制
+        const decimal = parseInt(ele, 2)
+        // 将 UTF-16 编码转为 字母
+        const char = String.fromCharCode(decimal)   
+        res.push(char)
+      })
+      return res.join('');
+    }
+
+    console.log(binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111"))
+  </script>
+</body>
+</html>

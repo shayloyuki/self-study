@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function addTogether() {
+      const argu = arguments
+
+      if (typeof argu[0] !== 'number' || (argu[1] && typeof argu[1] !== 'number')) {
+        return undefined
+      } else if (argu.length === 2){
+        return argu[0] + argu[1]
+      } else {
+        return num => typeof num === 'number' ? num + argu[0] : undefined
+      }
+
+    }
+
+    console.log(addTogether(2)([3])) // ubdefined
+    console.log(addTogether(5)(7)) // 12
+  </script>
+</body>
+</html>
