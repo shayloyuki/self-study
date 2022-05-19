@@ -21,11 +21,25 @@
       const earthRadius = 6367.4447;
 
     /* convert  avgAlt into orbitalPeriod*/ 
-    // formula: orbitalPeriod = 2 * Math.PI * (Math.sqrt( (Math.pow(earthRadius)) / GM))
+    // formula: orbitalPeriod = 2 * Math.PI * (Math.sqrt( (Math.pow(earthRadius + avgAlt, 3)) / GM))
 
+      function getOP(avgAlt) {
+        const twoPi = 2 * Math.PI
+        const a = earthRadius + avgAlt
+        const aLiFang = Math.pow(a, 3)
+        const sqrt = Math.sqrt(aLiFang / GM)
+        const res = twoPi * sqrt // 86399.70646176311
+        return Math.round(res) // 86400
+      }
 
+      let result = []
 
-      return avgAlt
+      for (let i = 0; i < arr.length; i++) {
+        arr[i]['name']
+        result.push({name: arr[i]['name'],  orbitalPeriod: getOP(arr[i]['avgAlt'])})
+      }
+
+      return result
     }
 
     console.log(orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}]))
