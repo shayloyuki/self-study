@@ -1,0 +1,65 @@
+<!--
+ * @Author: luoxue
+ * @Date: 2022-05-19 12:11:25
+ * @LastEditors: luoxue
+ * @LastEditTime: 2022-05-19 18:21:40
+ * @FilePath: \算法\make a person.html
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const Person = function(firstAndLast) {
+      // copy for change next time
+      let fullName = firstAndLast
+      let firstName = fullName.split(' ')[0]
+      let lastName = fullName.split(' ')[1]
+
+      /* get */
+      this.getFullName = function() {
+        return fullName
+      }
+
+      this.getFirstName = function() {
+        return firstName
+      }
+
+      this.getLastName = function() {
+        return lastName
+      }
+
+      /* set */
+      this.setFirstName = function(first) {
+        fullName = first + ' ' + lastName
+      }
+
+      this.setLastName = function(last) {
+        fullName = firstName + ' ' + last
+      }
+
+      this.setFullName = function(name) {
+        fullName = name;
+      };
+
+    };
+
+
+    const bob = new Person('Bob Ross');
+    bob.getFullName()
+
+    /* test */
+    bob.setFullName("Haskell Curry")
+    console.log(bob.getFirstName()) // 'Haskell' 
+
+    bob.setFullName("Haskell Curry")
+    console.log(bob.getLastName()) //  'Curry' 
+  </script>
+</body>
+</html>
