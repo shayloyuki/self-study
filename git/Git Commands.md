@@ -97,7 +97,7 @@ This version is zero, the last one is `1`.
 
 1. create a repository in GitHub.
 
-2. connect this rep and add a name origin to it. `git remote origin add url `
+2. connect this rep and add a name origin to it. `git remote add origin url `
 
 3. you can **clone** this rep if you don't have it locally `git clone url`
 

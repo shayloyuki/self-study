@@ -1,0 +1,160 @@
+<!--
+ * @Author: luoxue
+ * @Date: 2022-05-31 17:38:27
+ * @LastEditors: luoxue
+ * @LastEditTime: 2022-06-01 11:03:06
+ * @FilePath: \demo\过滤对象数组中的数据.html
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+      /* type: 0 表示工厂结构节点， 1 表示模型对象节点 */
+      const nodeData = [
+        {
+          parentId: '0',
+          nodeId: '99',
+          type: 1,
+          assigner: null,
+          nodeName: '选项三',
+        },
+        {
+          parentId: '0',
+          nodeId: '199',
+          type: 0,
+          assigner: null,
+          nodeName: '选项六',
+        },
+        {
+          parentId: '0',
+          nodeId: '1',
+          type: 0,
+          assigner: null,
+          nodeName: '选项一',
+          children: [
+            {
+              parentId: '1',
+              nodeId: '2',
+              type: 1,
+              assigner: null,
+              nodeName: '分区13',
+            },
+            {
+              parentId: '1',
+              nodeId: '2',
+              type: 0,
+              assigner: null,
+              nodeName: '分区1',
+              children: [
+                {
+                  parentId: '2',
+                  nodeId: '3',
+                  type: 0,
+                  assigner: 'cms',
+                  nodeName: '设备9',
+                  children: [
+                    {
+                      parentId: '3',
+                      nodeId: '4',
+                      type: 1,
+                      nodeName: '模型对象1'
+                    }
+                  ]
+                },
+                {
+                  parentId: '2',
+                  nodeId: '75',
+                  type: 0,
+                  assigner: null,
+                  nodeName: '设备2',
+                  children: [
+                    {
+                      parentId: '75',
+                      nodeId: '98',
+                      type: 1,
+                      nodeName: '模型对象2',
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          parentId: '0',
+          nodeId: '5',
+          type: 0,
+          nodeName: '选项二',
+          assigner: null,
+          children: [
+            {
+              parentId: '5',
+              nodeId: '6',
+              type: 0,
+              nodeName: '分区3',
+              assigner: null,
+              children: [
+                {
+                  parentId: '6',
+                  nodeId: '7',
+                  type: 0,
+                  nodeName: '设备4',
+                  assigner: null,
+                  children: [
+                    {
+                      parentId: '7',
+                      nodeId: '8',
+                      type: 1,
+                      nodeName: '模型对象3',
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+      ]
+      
+
+      function ModelNodeFilter(nodes) {
+
+        // 过滤条件
+        let predicate = function (node) {
+          if (!node.type) {
+            // 过滤掉模型对象节点
+            return true
+          } else {
+            return false
+          }
+        }
+
+        if (!(nodes && nodes.length)) {
+          return []
+        }
+
+        let res = []
+        for (let node of nodes) {
+          if (predicate(node)) {
+            res.push(node)
+            // 递归
+            node.children = this.ModelNodeFilter(node.children)
+          } else {
+            res.push(...this.ModelNodeFilter(node.children))
+          }
+        }
+
+        return res.length ? res : []
+
+      }
+
+      console.log(ModelNodeFilter(nodeData))
+  </script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!--
+ * @Author: luoxue
+ * @Date: 2022-05-23 16:37:18
+ * @LastEditors: luoxue
+ * @LastEditTime: 2022-05-23 18:04:55
+ * @FilePath: \demo\queryArr.html
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    let parentData = {}
+    const nodeData = [
+        // {
+        //   nodeId: '1',
+        //   nodeName: '项目1',
+        //   children: [
+        //     {
+        //       nodeId: '1-1',
+        //       nodeName: '分区1',
+        //       children: [
+        //         {
+        //           nodeId: '1-1-1',
+        //           nodeName: '啦啦',
+        //           children: [
+        //             {
+        //               nodeId: '1-1-1-1',
+        //               nodeName: '管线1'
+        //             },
+        //             {
+        //               nodeId: '1-1-1-2',
+        //               nodeName: '管线2'
+        //             }
+        //           ]
+        //         }
+        //       ]
+        //     },
+        //     {
+        //       nodeId: '1-2',
+        //       nodeName: '分区2',
+        //       children: [
+        //         {
+        //           nodeId: '1-2-1',
+        //           nodeName: '设备2',
+        //           children: [
+        //             {
+        //               nodeId: '1-2-1-1',
+        //               nodeName: '管线3'
+        //             },
+        //             {
+        //               nodeId: '1-2-1-2',
+        //               nodeName: '管线4'
+        //             }
+        //           ]
+        //         }
+        //       ]
+        //     },
+        //     {
+        //       nodeId: '1-3',
+        //       nodeName: '分区3',
+        //       children: [
+        //         {
+        //           nodeId: '1-3-1',
+        //           nodeName: '设备3',
+        //           children: [
+        //             {
+        //               nodeId: '1-3-1-1',
+        //               nodeName: '管线5'
+        //             },
+        //             {
+        //               nodeId: '1-3-1-2',
+        //               nodeName: '管线6'
+        //             }
+        //           ]
+        //         }
+        //       ]
+        //     },
+        //   ]
+        // },
+        {
+          nodeId: '2',
+          nodeName: '测试2',
+          children: [
+            {
+              nodeId: '2-1',
+              nodeName: '分区4',
+              children: [
+                {
+                  nodeId: '2-1-1',
+                  nodeName: '啦啦',
+                  children: [
+                    {
+                      nodeId: '2-1-1-1',
+                      nodeName: '管线7'
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+      ]
+  
+    // let res = nodeData.find(ele => ele.nodeId === parentId)
+    // if (res) {
+    //   parentData = res
+    // } else {
+    //   console.log('continue')
+    // }
+    let parentId = '2-1'
+    let obj = []
+    function queryNodeId(arr, nodeId) {
+      let result = arr.find(ele => ele.nodeId === nodeId)
+      if (result) {
+        return result
+      } else {
+        // arr.forEach(ele => {
+        //   if (ele.children) {
+        //     return queryNodeId(ele.children, nodeId)
+        //   }
+        // })
+      }
+    }
+
+    console.log(queryNodeId(nodeData, parentId))
+  </script>
+</body>
+</html>

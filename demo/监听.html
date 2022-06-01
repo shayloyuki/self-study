@@ -1,0 +1,36 @@
+<!--
+ * @Author: luoxue
+ * @Date: 2022-06-01 13:15:38
+ * @LastEditors: luoxue
+ * @LastEditTime: 2022-06-01 13:23:34
+ * @FilePath: \demo\监听.html
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let arr = {children: []}
+    // let arr = {}
+    
+
+    // if (!arr.children || !arr.children.length) {
+    //   console.log('不存在或为空')
+    // } else {
+    //   console.log('存在')
+    // }
+
+    if (arr.children.length) {
+      console.log('存在', arr)
+    } else {
+      console.log('不存在或为空', arr)
+    }
+  </script>
+</body>
+</html>
