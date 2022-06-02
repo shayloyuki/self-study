@@ -1,0 +1,128 @@
+<!--
+ * @Author: luoxue
+ * @Date: 2022-06-02 10:06:35
+ * @LastEditors: luoxue
+ * @LastEditTime: 2022-06-02 17:18:00
+ * @FilePath: \cms-uic:\Users\FuLong\Desktop\显示子项的所有负责人(1).html
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const nodeData = [
+        {
+          parentId: '0',
+          nodeId: '1', 
+          type: 0,
+          assigner: null, // 'cms, java1, 用户A' 没有成功显示
+          nodeName: '选项一',
+          children: [
+            {
+              parentId: '1',
+              nodeId: '2',
+              type: 0,
+              assigner: null, // 'cms, java1' done
+              nodeName: '分区1',
+              children: [
+                {
+                  parentId: '2',
+                  nodeId: '3',
+                  type: 0,
+                  assigner: null, // 'cms' done
+                  nodeName: '设备9',
+                  children: [
+                    {
+                      parentId: '3',
+                      nodeId: '68',
+                      type: 0,
+                      assigner: 'cms',
+                      nodeName: '设备19',
+                      children: []
+                    }                    
+                  ]
+                },
+                {
+                  parentId: '2',
+                  nodeId: '75',
+                  type: 0,
+                  assigner: null,
+                  nodeName: '设备2',
+                  children: []
+                }
+              ]
+            },
+            {
+              parentId: '1',
+              nodeId: '200',
+              type: 0,
+              assigner: null, // '用户A, java1' done
+              nodeName: '分区9',
+              children: [
+                {
+                  parentId: '200',
+                  nodeId: '300',
+                  type: 0,
+                  assigner: '用户A',
+                  nodeName: '设备3',
+                  children: []
+                },
+                {
+                  parentId: '200',
+                  nodeId: '753',
+                  type: 0,
+                  assigner: 'java1',
+                  nodeName: '设备8',
+                  children: []
+                }
+              ]
+            },            
+          ]
+        }
+      ]
+
+const getTreeParents = (data,refresh) => {
+  data.forEach((item) => {
+    if (item.children && item.children.length) {
+      const temp = getTreeParents(item.children);
+      if (temp.length) {
+        item.arr= []
+        for(let i = 0; i<temp.length;i++){
+          if(refresh){
+            let a = getTreeParents(temp);
+            if(a.length) {
+              for(let j = 0;j<a.length;j++){
+                item.arr.push(...a[i].arr)
+              }
+            }
+          }else{
+            item.arr.push(temp[i].assigner)
+          }
+          // 若有子项没有负责人，则显示 “待分配”
+          if (item.arr.includes(null)) {
+            item.assigner = null
+            item.arr = null
+          } else {
+            item.assigner = [...new Set(item.arr)].join(', ')
+          }
+        } 
+      }
+    }
+  });
+  return data;
+};
+
+const parentKeys = getTreeParents(nodeData,true);
+
+console.log(parentKeys);
+
+// this.getTreeParents(newVal,true)
+  </script>
+</body>
+</html>

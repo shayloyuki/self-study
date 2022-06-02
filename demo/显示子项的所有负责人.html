@@ -1,0 +1,160 @@
+<!--
+ * @Author: luoxue
+ * @Date: 2022-06-02 10:06:35
+ * @LastEditors: luoxue
+ * @LastEditTime: 2022-06-02 15:09:20
+ * @FilePath: \demo\显示子项的所有负责人.html
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const nodeData = [
+        {
+          parentId: '0',
+          nodeId: '1', 
+          type: 0,
+          assigner: null, // 'cms, java1, 用户A' 没有成功显示
+          nodeName: '选项一',
+          children: [
+            {
+              parentId: '1',
+              nodeId: '2',
+              type: 0,
+              assigner: null, // 'cms, java1' done
+              nodeName: '分区1',
+              children: [
+                {
+                  parentId: '2',
+                  nodeId: '3',
+                  type: 0,
+                  assigner: null, // 'cms' done
+                  nodeName: '设备9',
+                  children: [
+                    {
+                      parentId: '3',
+                      nodeId: '68',
+                      type: 0,
+                      assigner: 'cms',
+                      nodeName: '设备19',
+                      children: []
+                    }                    
+                  ]
+                },
+                {
+                  parentId: '2',
+                  nodeId: '75',
+                  type: 0,
+                  assigner: 'java1',
+                  nodeName: '设备2',
+                  children: []
+                }
+              ]
+            },
+            {
+              parentId: '1',
+              nodeId: '200',
+              type: 0,
+              assigner: null, // '用户A, java1' done
+              nodeName: '分区9',
+              children: [
+                {
+                  parentId: '200',
+                  nodeId: '300',
+                  type: 0,
+                  assigner: '用户A',
+                  nodeName: '设备3',
+                  children: []
+                },
+                {
+                  parentId: '200',
+                  nodeId: '753',
+                  type: 0,
+                  assigner: 'java1',
+                  nodeName: '设备8',
+                  children: []
+                }
+              ]
+            },            
+          ]
+        }
+      ]
+  
+    function showParentAssigner(nodes) {
+      
+      for (let node of nodes) {
+
+        if (!node.children.length) {
+          predicate(node)
+          predicate(findParentNode(node.parentId, nodeData))
+        } else {
+          showParentAssigner(node.children)
+        }
+        
+      }
+
+      function predicate(node) {
+        if (!node.assigner) return
+
+        console.log('当前节点的 id:', node.nodeId,'负责人：', node.assigner)
+        // 父节点
+        let parentNode = findParentNode(node.parentId, nodeData)
+        console.log('父节点：', parentNode)
+
+        if (parentNode.children.length === 1) {
+          // 当前节点没有兄弟节点
+          parentNode.assigner = node.assigner
+          console.log('当前节点没有兄弟节点, 更新后的父节点负责人：', parentNode.assigner)
+        } else {
+          // 有兄弟节点
+          let assignerArr = []
+          parentNode.children.forEach(item => {
+            /* item.assigner 可能会为 null */
+            if (item.assigner) {
+              if (item.assigner.indexOf(', ') !== -1) {
+                assignerArr.push(...item.assigner.split(', '))
+              } else {
+                assignerArr.push(item.assigner)
+              }
+            } else {
+              showParentAssigner(item)
+            }
+          })
+          console.log('兄弟节点:', assignerArr)
+          // 数组去重
+          function unique(arr) {
+            return Array.from(new Set(arr))
+          }
+          parentNode.assigner = unique(assignerArr).join(', ')
+          console.log('有兄弟节点, 更新后的父节点负责人：', parentNode.assigner)
+        }
+
+      }
+
+      
+      // 根据 parentId 找到父节点
+      function findParentNode(parentId, nodes) {
+        const conJa = nodes.find(node => node.nodeId === parentId)
+        if (conJa) {
+          return conJa
+        } else {
+          for (let node of nodes) {
+            return findParentNode(parentId, node.children)
+          }
+        }
+      }
+
+      return nodeData      
+    }
+
+    console.log(showParentAssigner(nodeData))
+  </script>
+</body>
+</html>
