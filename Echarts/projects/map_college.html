@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+                <html style="height: 100%;width:100%">
+                    <head>
+                        <meta charset="utf-8">
+                    </head>
+             <body style="height: 100%; width:100%">
+<!--             source: http://echarts.zhangmuchen.top/#/iframeDetail?cid=cd0d3-848e-cd64-a2e45-b2a41897-->
+                        <div id="chart-panel" style="height: 100%;width: 100%"></div>
+                        <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.0/dist/echarts.min.js"></script>
+                        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+                        <script type="text/javascript" src="http://zhangmuchen.top/file/dep/echarts/map/js/china.js"></script>
+
+                        <script type="text/javascript">
+                var dom = document.getElementById("chart-panel");
+                var myChart = echarts.init(dom);
+                var option;
+                var app ={};
+                option = {
+	"animation": true,
+	"animationThreshold": 2000,
+	"animationDuration": 1000,
+	"animationEasing": "cubicOut",
+	"animationDelay": 0,
+	"animationDurationUpdate": 300,
+	"animationEasingUpdate": "cubicOut",
+	"animationDelayUpdate": 0,
+	"color": ["#c23531", "#2f4554", "#61a0a8", "#d48265", "#749f83", "#ca8622", "#bda29a", "#6e7074", "#546570", "#c4ccd3", "#f05b72", "#ef5b9c", "#f47920", "#905a3d", "#fab27b", "#2a5caa", "#444693", "#726930", "#b2d235", "#6d8346", "#ac6767", "#1d953f", "#6950a1", "#918597"],
+	"series": [{
+		"type": "map",
+		"name": "高校数量",
+		"label": {
+			"show": true,
+			"position": "top",
+			"color": "#00f",
+			"margin": 8,
+			"formatter": "{b}:{c}"
+		},
+		"mapType": "china",
+		"data": [{
+			"name": "上海",
+			"value": 60
+		}, {
+			"name": "云南",
+			"value": 32
+		}, {
+			"name": "内蒙古",
+			"value": 19
+		}, {
+			"name": "北京",
+			"value": 82
+		}, {
+			"name": "吉林",
+			"value": 48
+		}, {
+			"name": "四川",
+			"value": 58
+		}, {
+			"name": "天津",
+			"value": 55
+		}, {
+			"name": "宁夏",
+			"value": 9
+		}, {
+			"name": "安徽",
+			"value": 47
+		}, {
+			"name": "山东",
+			"value": 145
+		}, {
+			"name": "山西",
+			"value": 35
+		}, {
+			"name": "广东",
+			"value": 48
+		}, {
+			"name": "广西",
+			"value": 33
+		}, {
+			"name": "新疆",
+			"value": 21
+		}, {
+			"name": "江苏",
+			"value": 132
+		}, {
+			"name": "江西",
+			"value": 73
+		}, {
+			"name": "河北",
+			"value": 91
+		}, {
+			"name": "河南",
+			"value": 77
+		}, {
+			"name": "浙江",
+			"value": 54
+		}, {
+			"name": "海南",
+			"value": 16
+		}, {
+			"name": "湖北",
+			"value": 90
+		}, {
+			"name": "湖南",
+			"value": 74
+		}, {
+			"name": "甘肃",
+			"value": 19
+		}, {
+			"name": "福建",
+			"value": 32
+		}, {
+			"name": "西藏",
+			"value": 3
+		}, {
+			"name": "贵州",
+			"value": 27
+		}, {
+			"name": "辽宁",
+			"value": 76
+		}, {
+			"name": "重庆",
+			"value": 27
+		}, {
+			"name": "陕西",
+			"value": 65
+		}, {
+			"name": "青海",
+			"value": 5
+		}, {
+			"name": "香港",
+			"value": 2
+		}, {
+			"name": "黑龙江",
+			"value": 67
+		}],
+		"roam": true,
+		"zoom": 1,
+		"showLegendSymbol": true,
+		"emphasis": {},
+		"rippleEffect": {
+			"show": true,
+			"brushType": "stroke",
+			"scale": 2.5,
+			"period": 4
+		}
+	}],
+	"legend": [{
+		"data": ["高校数量"],
+		"selected": {
+			"高校数量": true
+		},
+		"show": true
+	}],
+	"tooltip": {
+		"show": true,
+		"trigger": "item",
+		"triggerOn": "mousemove|click",
+		"axisPointer": {
+			"type": "line"
+		},
+		"textStyle": {
+			"fontSize": 14
+		},
+		"borderWidth": 0
+	},
+	"title": [{
+		"text": "全国高校分布图"
+	}],
+	"visualMap": {
+		"show": true,
+		"type": "continuous",
+		"min": 0,
+		"max": 150,
+		"inRange": {
+			"color": ["#50a3ba", "#eac763", "#d94e5d"]
+		},
+		"calculable": true,
+		"splitNumber": 5,
+		"orient": "vertical",
+		"showLabel": true
+	}
+}
+                if (option && typeof option === 'object') {
+                    myChart.setOption(option);
+                }
+                 </script>
+               </body>
+            </html>

@@ -1,0 +1,39 @@
+<!--
+ * @Author: luoxue
+ * @Date: 2023-01-04 15:25:22
+ * @LastEditors: luoxue
+ * @LastEditTime: 2023-01-04 15:32:35
+ * @FilePath: \demo\this 指向.html
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>this 指向</title>
+</head>
+<body>
+  <script>
+    // === 第一种 ===
+    // const test = {
+    //   name:'jack',
+    //   getName:function(){
+    //       console.log(this)
+    //   }
+    // }
+    // test.getName() // this 指向 {name: 'jack', getName: ƒ} 这个对象
+
+    // === 第二种 ===
+    const test = {
+      name:'jack',
+      getName:function(){
+        console.log(this)
+      }
+    }
+    const func = test.getName; // 把函数赋值给变量，调用变量，函数内部的 this 指向会丢失
+    func(); // this 失去指向：node 输出 node 对象，html 中输入 window 对象
+  </script>
+</body>
+</html>

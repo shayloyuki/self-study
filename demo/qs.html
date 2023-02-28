@@ -1,0 +1,27 @@
+<!--
+ * @Author: luoxue
+ * @Date: 2022-08-25 13:29:52
+ * @LastEditors: luoxue
+ * @LastEditTime: 2022-08-25 13:32:51
+ * @FilePath: \demo\qs.html
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const qs =  require('qs')
+
+    /* qs.parse() */
+    let url = 'method=query_sql_dataset_data&projectId=85&appToken=7d22e38e-5717-11e7-907b-a6006ad3dba0';
+
+    console.log(qs.parse(url))
+  </script>
+</body>
+</html>

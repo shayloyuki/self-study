@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="../js/echarts.js"></script>
+    <!-- <script src="../theme/yellow.js"></script> -->
+</head>
+<style>
+    html, body, #main {
+        width: 100%;
+    }
+    #main {
+        height: 400px;
+    }
+</style>
+<body>
+<div id="main"></div>
+</body>
+<script type="text/javascript">
+
+    // var myChart = echarts.init(document.getElementById('main'))
+
+    // 初始化图表
+    const echartInit = (name) => {
+        var myChart = echarts.init(document.getElementById('main'), name || 'default')
+
+        window.addEventListener('resize', function() {
+            myChart.resize()
+        })
+
+        // ===  维度映射 ===
+        // var option = {
+        //     legend: {},
+        //     tooltip: {},
+        //     dataset: {
+        //         // 用 dimensions 指定了维度的顺序。直角坐标系中，如果 X 轴 type 为 category，
+        //         // 默认把第一个维度映射到 X 轴上，后面维度映射到 Y 轴上。
+        //         // 如果不指定 dimensions，也可以通过指定 series.encode
+        //         // 完成映射，参见后文
+        //         // dimensions 参考：https://echarts.apache.org/zh/option.html#dataset.dimensions
+        //         dimensions: ['product', '2015', '2016', '2017'],
+        //         source: [
+        //             ['product', '2015', '2016', '2017'],
+        //             ['Matcha Latte', 43.3, 85.8, 93.7],
+        //             ['Milk Tea', 83.1, 73.4, 55.1],
+        //             ['Cheese Cocoa', 86.4, 65.2, 82.5],
+        //             ['Walnut Brownie', 72.4, 53.9, 39.1]
+        //         ]
+        //         // 数据集也可以是对象数组
+        //         // source: [
+        //         //     { product: 'Matcha Latte', '2015': 43.3, '2016': 85.8, '2017': 93.7 },
+        //         //     { product: 'Milk Tea', '2015': 83.1, '2016': 73.4, '2017': 55.1 },
+        //         //     { product: 'Cheese Cocoa', '2015': 86.4, '2016': 65.2, '2017': 82.5 },
+        //         //     { product: 'Walnut Brownie', '2015': 72.4, '2016': 53.9, '2017': 39.1 }
+        //         // ]
+        //     },
+        //     xAxis: { type: 'category' },
+        //     yAxis: {},
+        //     series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }]
+        // }
+
+        //=== 另一个例子 ===
+        var option = {
+            dataset: {
+                // 每一大类数据的每个小类的名称：从第二个开始
+                dimensions: [
+                    '大前端',
+                    { name: '学习人数' },
+                    '就业人数'
+                ],
+                source: [
+                    ['大前端','学习人数', '就业人数'],
+                    ['html',  20,   25],
+                    ['css',   10,   15],
+                    ['js',    30,   40]
+                ]
+            },
+            legend: {},
+            tooltip: {},
+            xAxis: { type: 'category' },
+            yAxis: {},
+            series: [
+                {
+                    type: 'bar',
+                    // seriesLayoutBy: 'row'
+                },
+                {
+                    type: 'bar',
+                    // seriesLayoutBy: 'row'
+                }
+            ]
+        }
+
+        myChart.setOption(option)
+    }
+
+    // 使用自定义主题（JS 格式）
+    echartInit()
+</script>
+</html>

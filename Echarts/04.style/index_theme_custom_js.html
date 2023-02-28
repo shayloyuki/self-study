@@ -1,0 +1,66 @@
+<!--
+ * @Author: luoxue
+ * @Date: 2023-02-20 11:24:14
+ * @LastEditors: luoxue
+ * @LastEditTime: 2023-02-20 15:59:51
+ * @FilePath: \Echarts\04.style\index_theme_custom_js.html
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="../js/echarts.js"></script>
+    <script src="../theme/yellow.js"></script>
+  </head>
+  <style>
+    html, body, #main {
+      width: 100%;
+    }
+    #main {
+      height: 400px;
+    }
+  </style>
+  <body>
+    <div id="main"></div>
+  </body>
+  <script type="text/javascript">
+
+    // var myChart = echarts.init(document.getElementById('main'))
+
+    // 初始化图表
+    const echartInit = (name) => {
+      var myChart = echarts.init(document.getElementById('main'), name)
+        
+        window.addEventListener('resize', function() {
+          myChart.resize()
+        })
+
+        var option = {
+          title: {
+            text: "Echarts入门示例"
+          },
+          tooltip: {},
+          legend: {
+            data: ['销量']
+          },
+          xAxis: {
+            data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+          },
+          yAxis: {},
+          series: [
+            {
+              name: '销量',
+              type: 'bar',
+              data: [58, 20, 36, 10, 10, 20]          
+            }
+          ]
+        }
+
+        myChart.setOption(option)
+    }
+  
+    // 使用自定义主题（JS 格式）
+    echartInit('yellow')
+  </script>
+</html>

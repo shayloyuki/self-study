@@ -1,0 +1,53 @@
+<!--
+ * @Author: luoxue
+ * @Date: 2022-12-08 10:34:23
+ * @LastEditors: luoxue
+ * @LastEditTime: 2022-12-09 14:48:52
+ * @FilePath: \demo\清除浮动.html
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>清除浮动</title>
+</head>
+<body>
+  <style>
+    .news {
+      background-color: gray;
+      border: solid 1px black;
+    }
+
+    .news img {
+      float: left;
+    }
+
+    .news p {
+      float: right;
+    }
+
+    /* 清除左右浮动带来的影响 */
+    .clearfix::after {
+      content: '';
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden;
+    }
+
+    /* 触发 hasLayout */
+    .clearfix {
+      zoom: 1;
+    }
+
+  </style>
+
+  <div class="news clearfix">
+    <img src="https://pic1.zhimg.com/v2-fd403bf2e2057774a0fe83c671039103_xl.jpg?source=32738c0c" />
+    <p>some text</p>
+  </div>
+</body>
+</html>

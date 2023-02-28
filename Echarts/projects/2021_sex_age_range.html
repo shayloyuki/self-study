@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="../js/echarts.js"></script>
+</head>
+<style>
+    /*html, body, #main {*/
+    /*    width: 100%;*/
+    /*}*/
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    button {
+        cursor: pointer;
+    }
+
+    #main {
+        width: 100%;
+        height: 800px;
+    }
+</style>
+<body>
+    <div id="panel">
+        <button onClick="changeTheme()">点我切换模式</button>
+    </div>
+
+    <div id="main"></div>
+</body>
+<script type="text/javascript">
+    var themeName = 'default'
+
+    // 初始化图表
+    const echartInit = (name) => {
+        var myChart = echarts.init(document.getElementById('main'), name || 'default')
+
+        /* 响应屏幕宽度变化 */
+
+        window.addEventListener('resize', function() {
+            myChart.resize()
+        })
+
+
+        var option = {
+            // 开启无障碍访问描述
+            aria: {
+                show: true
+            },
+            title: {
+                text: "年龄和性别全国人口数（2021年）",
+                // 标题居中
+                left: 'center',
+                top: 10
+            },
+            tooltip: {
+                trigger: 'axis',
+                // 阴影指示器
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            // 图例
+            legend: {
+                top: 10,
+                left: 350,
+            },
+            dataset: {
+                source: [
+                    ['年龄', '男', '女', '男女性别比'],
+                    ['0-4岁', 38288, 34690, 110.37],
+                    ['5-9岁', 50970, 45124, 112.96],
+                    ['10-14岁', 49345, 42959, 114.86],
+                    ['15-19岁', 42677, 36737, 116.17],
+                    ['20-24岁', 41020, 36236, 113.20],
+                    ['25-29岁', 48189, 43540, 110.68],
+                    ['30-34岁', 66101, 61955, 106.69],
+                    ['35-39岁', 56115, 53057, 105.76],
+                    ['40-44岁', 50206, 47817, 105.00],
+                    ['45-49岁', 58320, 56225, 103.73],
+                    ['50-54岁', 65216, 64103, 101.74],
+                    ['55-59岁', 61237, 60752, 100.80],
+                    ['60-64岁', 35357, 35399, 99.88],
+                    ['65-69岁', 39951, 41394, 96.51],
+                    ['70-74岁', 27247, 28962, 94.08],
+                    ['75-79岁', 16457, 18429, 89.30],
+                    ['80-84岁', 10175, 12368, 82.27],
+                    ['85-89岁', 5066, 7252, 69.86],
+                    ['90-94岁', 1643, 2606, 63.07],
+                    ['95岁及以上', 263, 608, 43.20],
+                ]
+            },
+            xAxis: {
+                type: 'category',
+                name: '年龄',
+                nameTextStyle: {
+                    align: 'center'
+                },
+                axisLabel: {
+                    // 默认间隔显示，0 表示全部显示
+                    interval: 0
+                }
+                // axisTick: {
+                //     alignWithLabel: true
+                // }
+            },
+            // 一个Y轴时yAxis为对象, 两个Y轴时yAxis为数组
+            yAxis: [
+                {
+                    type: 'value',
+                    name: '人数',
+                    position: 'left',
+                    splitLine: {
+                        // show: false,
+                        lineStyle: {
+                            type: 'dashed'
+                        }
+                    }
+                },
+                {
+                    type: 'value',
+                    // 自定义 y 轴刻度
+                    name: '男女性别比',
+                    // 极值：分别为数据中的极值
+                    // min: 'dataMin',
+                    // max: 'dataMax',
+                    // interval: 10,
+                    position: 'right',
+                    // 显示 y 轴刻度线
+                    // axisLine: {
+                    //     show: true
+                    // },
+                    // 隐藏刻度名
+                    axisLabel: {
+                        show: false
+                    },
+                    // 隐藏分割线
+                    splitLine: {
+                        show: false
+                    }
+                },
+            ],
+            // 显示每类有多少个柱
+            series: [
+                {
+                    type: 'bar',
+                    yAxisIndex: 0
+                },
+                {
+                    type: 'bar',
+                    yAxisIndex: 0
+                },
+                {
+                    type: 'line',
+                    // 控制参照哪一个 y 轴
+                    yAxisIndex: 1,
+                    // 折线点上面显示数值
+                    // label: {
+                    //     show: true
+                    // },
+                    // 警戒线
+                    markLine: {
+                        silent: true,
+                        // 线两端的标记
+                        symbol: ['none', 'none'],
+                        label: {
+                            formatter: '{c} %',
+                            distance: 8,
+                            color: 'red',
+                            fontWeight: 'bold'
+                        },
+                        // 隐藏标线
+                        lineStyle: {
+                            color: 'transparent'
+                        },
+                        data: [
+                            {
+                                yAxis: 102
+                            },
+                            {
+                                yAxis: 107
+                            }
+                        ]
+                    },
+                    // 图表标记区域
+                    markArea: {
+                        // 不响应鼠标事件
+                        silent: true,
+                        data: [
+                            // 正常
+                            [
+                                {
+                                    name: '出生性别比正常',
+                                    yAxis: 102,
+                                    itemStyle: {
+                                        color: '#00EA9C'
+                                    },
+                                    label: {
+                                        show: true,
+                                        position: 'right',
+                                        fontStyle: 'oblique',
+                                        color: '#00EA9C'
+                                    }
+                                },
+                                {
+                                    yAxis: 107,
+                                }
+                            ],
+                            // 过高
+                            // [
+                            //     {
+                            //         name: '出生性别比过高',
+                            //         yAxis: 107,
+                            //         itemStyle: {
+                            //             color: '#f38f8f'
+                            //         },
+                            //         label: {
+                            //             position: 'right',
+                            //             fontStyle: 'oblique',
+                            //             color: '#f38f8f'
+                            //         }
+                            //     },
+                            //     { // y 轴的最大值
+                            //         yAxis: 'max'
+                            //     }
+                            // ]
+                        ]
+                    },
+                    // 鼠标悬浮时高亮样式
+                    emphasis: {
+                        itemStyle: {
+                            borderWidth: 10
+                        }
+                    }
+                }
+            ]
+        }
+
+        myChart.setOption(option)
+    }
+
+    // 使用自定义主题（JS 格式）
+    echartInit()
+
+    // 清空当前实例
+    function qingkong(){
+        // 清空当前实例，会移除实例中所有的组件和图表。
+        var myChart = echarts.init(document.getElementById('main'));
+        myChart.clear() // canvas 还在，相当于 v-show
+    }
+
+    // 销毁实例
+    function desHander(){
+        var myChart = echarts.init(document.getElementById('main'));
+        // 销毁实例，销毁后实例无法再被使用。
+        // 在什么情况下需要调用该函数进行销毁当前的实例呢？
+        // 官方给的说明:在图表容器被销毁之后，要调用 echartsInstance.dispose 销毁实例，否则再次渲染时，图表不会显示，参考例子：https://blog.csdn.net/yyz_1987/article/details/119903964
+        myChart.dispose(); // canvas 消失，相当于 v-if
+    }
+    const changeTheme = () => {
+        desHander()
+        if (themeName === 'default') {
+            themeName = 'dark'
+        } else {
+            themeName = 'default'
+        }
+        echartInit(themeName)
+    }
+
+</script>
+</html>

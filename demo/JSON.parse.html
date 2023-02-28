@@ -1,0 +1,39 @@
+<!--
+ * @Author: luoxue
+ * @Date: 2022-08-18 10:35:25
+ * @LastEditors: luoxue
+ * @LastEditTime: 2022-08-18 10:49:53
+ * @FilePath: \demo\JSON.parse.html
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /* 
+     * 结论：
+        1. JSON 格式的字符串：外部是单引号，内部（key 和 value）都必须是双引号
+        2. 若内部是单引号，则 JSON.parse() 会报错，应该用 eval("("+str+")") 来替代转换
+        3. eval 也可转换正确的 JSON 字符串
+    */
+    const str = "['2022-08-01', '2022-09-01']"
+    // console.log(JSON.parse(str)) // Uncaught SyntaxError: Unexpected token ' in JSON at position 1
+    const afterEval = eval("("+str+")") // ['2022-08-01', '2022-09-01']
+
+    const a = JSON.stringify(afterEval) // '["2022-08-01","2022-09-01"]''
+    const b = JSON.parse(a) // ['2022-08-01', '2022-09-01']
+
+    const correctJSON = '["2022-08-01","2022-09-01"]'
+    console.log('JSON.parse', JSON.parse(correctJSON)) // ['2022-08-01', '2022-09-01']
+    console.log('eval:', eval("("+correctJSON+")") ) // ['2022-08-01', '2022-09-01']
+
+    
+  </script>
+</body>
+</html>

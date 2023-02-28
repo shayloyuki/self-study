@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="../js/echarts.js"></script>
+    <!-- <script src="../theme/yellow.js"></script> -->
+</head>
+<style>
+    html, body, #main {
+        width: 100%;
+    }
+    #main {
+        height: 400px;
+    }
+</style>
+<body>
+<div id="main"></div>
+</body>
+<script type="text/javascript">
+
+    // var myChart = echarts.init(document.getElementById('main'))
+
+    // 初始化图表
+    const echartInit = (name) => {
+
+        var myChart = echarts.init(document.getElementById('main'), name || 'default')
+
+        window.addEventListener('resize', function() {
+            myChart.resize()
+        })
+        option = {
+            xAxis: {},
+            yAxis: {},
+            series: {
+                type: 'scatter', // 散点图或气泡图
+                data: [
+                    [10.0, 8.04],
+                    [8.07, 6.95],
+                    [13.0, 7.58],
+                    [9.05, 8.81],
+                    [11.0, 8.33],
+                    [14.0, 7.66],
+                    [13.4, 6.81],
+                    [10.0, 6.33],
+                    [14.0, 8.96],
+                    [12.5, 6.82],
+                    [9.15, 7.2],
+                    [11.5, 7.2],
+                    [3.03, 4.23],
+                    [12.2, 7.83],
+                    [2.02, 4.47],
+                    [1.05, 3.33],
+                    [4.05, 4.96],
+                    [6.03, 7.24],
+                    [12.0, 6.26],
+                    [12.0, 8.84],
+                    [7.08, 5.82],
+                    [5.02, 5.68]
+                ],
+
+                // === 推荐: 高亮样式分开写 ===
+                // 普通样式。
+                // itemStyle: {
+                //     // 点的颜色。
+                //     color: 'red'
+                // },
+                // label: {
+                //     show: true,
+                //     // 标签的文字。
+                //     formatter: 'normal.'
+                // },
+
+                // 高亮样式。
+                // emphasis: {
+                //     itemStyle: {
+                //         // 高亮时点的颜色。
+                //         color: 'blue'
+                //     },
+                //     // label: {
+                //     //     show: true,
+                //     //     // 高亮时标签的文字。
+                //     //     formatter: 'emphasis.'
+                //     // }
+                // }
+
+               // === 也兼容以前的写法：normal 和 emphasis
+                itemStyle: {
+                    normal: {
+                        color: 'red'
+                    },
+                    emphasis: {
+                        color: 'blue'
+                    }
+                },
+                // label: {
+                //     normal: {
+                //         show: true,
+                //         formatter: 'normal'
+                //     },
+                //     emphasis: {
+                //         show: true,
+                //         formatter: 'emphasie'
+                //     }
+                // }
+            }
+        };
+
+        myChart.setOption(option)
+    }
+
+    // 使用自定义主题（JS 格式）
+    echartInit()
+
+</script>
+</html>

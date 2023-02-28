@@ -1,0 +1,27 @@
+<!--
+ * @Author: luoxue
+ * @Date: 2022-08-09 10:23:56
+ * @LastEditors: luoxue
+ * @LastEditTime: 2022-08-09 10:32:23
+ * @FilePath: \demo\convertEnumScope.html
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let str = '{"circle":"圆形", "square":"正方形"}'
+    var obj = JSON.parse(str) // {circle: '圆形', square: '正方形'}
+    console.log(obj)
+    
+    let str2 = '[10,20]'
+    console.log(JSON.parse(str2)) // [10, 20]
+  </script>
+</body>
+</html>

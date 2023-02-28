@@ -1,0 +1,40 @@
+<!--
+ * @Author: luoxue
+ * @Date: 2023-01-06 09:47:30
+ * @LastEditors: luoxue
+ * @LastEditTime: 2023-01-06 11:20:38
+ * @FilePath: \demo\canvas\test_canvas.html
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>canvas</title>
+</head>
+<body>
+  <p>下面是 svg</p>
+  <img src="./Router.svg" alt="">
+  <br>
+  <p>下面是 canvas</p>
+  <canvas id="myCanvas" width="500" height="500">your browser does not support the canvas tag </canvas>
+
+  <script type="text/javascript">
+
+    var canvas=document.getElementById('myCanvas'); // 元素对象
+    var ctx=canvas.getContext('2d'); // 上下文 context
+    var img = new Image()
+    img.src = "testWMF.wmf"
+    img.onload = () => ctx.drawImage(img, 1, 1)
+    
+  </script>
+
+  <p>下面是 wmf,无法显示，只能下载</p>
+  <!-- 该插件不受支持 -->
+  <!-- <embed src="./testWMF.wmf" type="application/x-msmetafile">  -->
+  <!-- <object data="./testWMF.wmf" type="application/x-msmetafile"></object> -->
+  <!-- <iframe src="./testWMF.wmf"></iframe> -->
+</body>
+</html>

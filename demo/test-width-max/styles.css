@@ -1,0 +1,14 @@
+body .test1 {
+  background-color: pink;
+  width: 100px;
+  height: 100px;
+}
+
+body .test2 {
+  background-color: skyblue;
+  /* 哪个大，以哪个为宽度 */
+  /* width: max(90px, 18vh);  */
+  /* 哪个小，以哪个为宽度 */
+  width: min(90px, 18vh);
+  height: 100px;
+}

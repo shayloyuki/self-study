@@ -1,0 +1,44 @@
+<!--
+ * @Author: luoxue
+ * @Date: 2023-01-11 10:21:33
+ * @LastEditors: luoxue
+ * @LastEditTime: 2023-01-11 11:03:18
+ * @FilePath: \cms-uic:\Users\FuLong\Documents\my-code\self-study\demo\不改变 state.html
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>不改变 state</title>
+</head>
+<body>
+  <script>
+    const state = [
+      'Go to the store',
+      'Clean the house',
+      'Cook dinner',
+      'Learn to code',
+    ]
+
+    /* === 改变 state === */
+    // console.log(state.push('new todo')) // 5 // push 返回修改后数组的长度
+    // console.log(state) // ['Go to the store', 'Clean the house', 'Cook dinner', 'Learn to code', 'new todo']
+
+    /* === 不改变 state，实质：拷贝数组 === */
+    // 1. 展开操作符 ...arr
+    console.log([...state, 'new todo'])
+    // 2. arr.concat()
+    console.log(state.concat('new todo'))
+    // 3. 复制 state，再 push
+    let newState = JSON.parse(JSON.stringify(state))
+    newState.push('new todo')
+    console.log(newState)
+    // 4. arr.slice(start, end) 从 start 开始，不包含 end
+    let state2 = state.slice(0)
+    console.log([...state2, 'new todo'])
+  </script>
+</body>
+</html>

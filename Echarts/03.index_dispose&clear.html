@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>第一个 ECharts 实例</title>
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+</head>
+
+<style>
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+  a:hover {
+    color: red
+  }
+</style>
+
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 800px;height:400px; background: pink;"></div>
+    <div onclick="showHander()"><a href="#">展示实例</a></div><br>
+    <div onclick="desHander()"><a href="#">销毁实例</a></div><br>
+    <div onclick="qingkong()"><a href="#">清空当前实例</a></div><br>
+    <script type="text/javascript">
+    // 初始化echarts
+    function xuanranInt(){
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        let index = 0;
+
+        var colorList = ['#73DDFF', '#73ACFF', '#FDD56A', '#FDB36A', '#FD866A', '#9E87FF', '#58D5FF'];
+
+        var data = [{
+            'name': '热点网格',
+            'value': 5600
+        }, {
+            'name': '大气污染',
+            'value': 3600
+        }, {
+            'name': '水质超标',
+            'value': 1500
+        }, {
+            'name': '在线超标',
+            'value': 2000
+        }, {
+            'name': '未知',
+            'value': 899
+        }, {
+            'name': '系统对接',
+            'value': 4000
+        }]
+        option = {
+            title: {
+                text: 'PieChart',
+                x: 'center',
+                y: 'center',
+                textStyle: {
+                    fontSize: 20
+                }
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                type: 'scroll',
+                orient: 'vertical',
+                right: '5%',
+                top: 'center',
+                selectedMode: true,
+                icon: 'pin',
+                formatter: function (name) {
+                    let title = ''
+                    var total = 0;
+                    var target;
+                    var index;
+                    for (var i = 0, l = data.length; i < l; i++) {
+                        if (data[i].name == name) {
+                            target = data[i].value;
+                            title = data[i].label
+                            index = i < 6 ? i : 5
+                        }
+                    }
+                    return `  ${name}   ${index}  ${target}个`
+                }
+            },
+            label: { //去除饼图的指示折线label
+                normal: {
+                    show: false,
+                    position: 'inside',
+                    formatter: "{b}:{d}%"
+                },
+            },
+            series: [{
+                type: 'pie',
+                center: ['50%', '50%'],
+                radius: ['50%', '70%'],
+                clockwise: true,
+                avoidLabelOverlap: true,
+                hoverOffset: 30,
+                emphasis: {
+                    itemStyle: {
+                        borderColor: '#f3f3f3',
+                        borderWidth: 10
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        borderColor: "#FFFFFF",
+                        borderWidth: 1,
+                        label: {
+                            show: false,
+                        },
+                        labelLine: {
+                            show: false
+                        }
+                    }
+                },
+
+                data: data,
+            }]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    }
+    // 调用
+    xuanranInt();
+
+    // 重新渲染echarts
+    function showHander(){
+        xuanranInt();
+    }
+
+    // 销毁实例
+    function desHander(){
+      var myChart = echarts.init(document.getElementById('main'));
+      // 销毁实例，销毁后实例无法再被使用。
+      // 在什么情况下需要调用该函数进行销毁当前的实例呢？
+      // 官方给的说明:在图表容器被销毁之后，要调用 echartsInstance.dispose 销毁实例，否则再次渲染时，图表不会显示，参考例子：https://blog.csdn.net/yyz_1987/article/details/119903964
+      myChart.dispose(); // canvas 消失，相当于 v-if
+    }
+
+    // 清空当前实例
+    function qingkong(){
+      // 清空当前实例，会移除实例中所有的组件和图表。
+      var myChart = echarts.init(document.getElementById('main'));
+      myChart.clear() // canvas 还在，相当于 v-show
+    }
+    </script>
+</body>
+</html>

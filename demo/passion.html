@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function GirlFriend() {
+      this.sex = 'female',
+      this.hobbies = [ 'meat', 'milk', 'exercise' ],
+      this.personalities = [ 'brave', 'confidence', 'ambitious' ],
+      this.chatWithMe = () => {
+        alert("let's talk about anything interesting")
+      },
+      this.workOutWithMe = () => {
+        alert("let's gain more muscle!")
+      }
+    }
+    let myGL = new GirlFriend()
+    myGL.chatWithMe()
+    myGL.workOutWithMe()
+  </script>
+</body>
+</html>
